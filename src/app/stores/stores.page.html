@@ -1,0 +1,61 @@
+<ion-header>
+
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/">Volver</ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center"><img src="assets/img/logo.png" height="70"></ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+  
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" class="contenedores">
+        <a (click)="tableta('productos')" class="subcategories" [ngClass]="tabs===1 ? 'subcateActiva' : ''" >
+        
+
+          Tiendas
+
+        </a>
+        <a (click)="tableta('mapa')" class="subcategories" [ngClass]="tabs===0 ? 'subcateActiva' : ''" >
+        
+
+          Mapa
+
+        </a>
+      </ion-col>
+      <ion-col size="12" *ngIf="tabs===1">
+        <ion-row>
+      <ion-col size="6" *ngFor="let store of stores">
+        <a routerLink="/detail/{{store.id}}">
+          <ion-card>
+            <img class="wdt-100" [src]="store.banner" />
+          
+              <ion-card-subtitle class="ion-text-center cl-b">{{store.store_name}}</ion-card-subtitle>
+              <ion-card-subtitle class="ion-text-center ft-13">{{store.categoria_principal}}</ion-card-subtitle>
+          
+            
+          </ion-card>
+        </a>
+      </ion-col>
+    </ion-row>
+      </ion-col>
+  
+      <ion-col size="12" class="map_box_container" [ngClass]="tabs===1 ? 'oculto' : ''">
+        <div id="map"   style= "width:100%;height:100%"></div>
+      </ion-col>
+
+      <ion-col size="12" class="ion-text-center">
+        <ion-spinner *ngIf="spinner" name="crescent"></ion-spinner>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>

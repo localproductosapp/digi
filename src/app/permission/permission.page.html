@@ -1,0 +1,66 @@
+<ion-header #header class="ion-no-border">
+  <ion-toolbar>
+    <!-- <ion-buttons slot="start" *ngIf="ver">
+      <ion-back-button defaultHref="/">Volver</ion-back-button>
+    </ion-buttons> -->
+    <!-- <ion-title >Cursos mas Vistos</ion-title> -->
+    <img class="logo" src="/assets/img/logo.png">
+    <!-- <ion-row class="ion-justify-content-center ion-text-center">
+      <ion-col size="4" class="ion-text-right">
+        TV Shows
+      </ion-col>
+      <ion-col size="4">
+        Movies
+      </ion-col>
+      <ion-col size="4" tappable (click)="openCategories()" class="ion-text-left">
+        Categories <ion-icon name="caret-down-outline"></ion-icon>
+      </ion-col>
+    </ion-row> -->
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" scrollEvents="true" [appHideHeader]="header" style="top: 76px;">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" style="text-align:right">
+        <ion-icon (click)="Aceptar()" name="close-circle-outline" size="large"></ion-icon>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <img src="assets/img/cohete_rojo.png">
+      </ion-col>
+      
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-text color="light" class="ion-text-center">
+          <h1>¡Qué emoción verte por aquí!</h1>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-text color="light" class="ion-text-center">
+          <p>Me llamo Digi y estoy aquí para ayudarte con la primera toma de contacto con Digitalizap.</p>
+          <p><b>Esta app aun está en desarrollo y es una prueba.</b> Si algo te resulta extraño o no está claro, tu opinión nos ayuda mucho a mejorar. Nos puedes escribir a: hola@digitalizap.com. Gracias por estar aquí. </p>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" class="ion-text-center mb">
+        <a (click)="Aceptar()" class="activarNoti">Empezar Ahora</a>
+
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" class="ion-text-center mb " style="margin-bottom: 52px;">
+        <p>Trastea por toda la app tranquilo..</p>
+        <p>¡No puedes romper nada!</p>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

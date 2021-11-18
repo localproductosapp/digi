@@ -1,0 +1,157 @@
+
+<ion-header #header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/home">Volver</ion-back-button>
+    </ion-buttons>
+    <img class="logo" src="/assets/img/logo.png">
+    <!-- <ion-row class="ion-justify-content-center ion-text-center">
+      <ion-col size="4" class="ion-text-right">
+        TV Shows
+      </ion-col>
+      <ion-col size="4">
+        Movies
+      </ion-col>
+      <ion-col size="4" tappable (click)="openCategories()" class="ion-text-left">
+        Categories <ion-icon name="caret-down-outline"></ion-icon>
+      </ion-col>
+    </ion-row> -->
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" scrollEvents="true" [appHideHeader]="header">
+<!-- 
+  <div fullscreen *ngIf="curso" class="tarjeta">
+
+    <img src="assets/img/lerning.jpg" />
+
+
+    <div class="bandita">
+
+      <ion-card-title class="txt-center">{{curso.name}}</ion-card-title>
+    </div>
+
+  </div> -->
+
+  <!-- [style.background-image]="'url(assets/img/lerning.jpg)'" -->
+
+  <div class="spotlight" *ngIf="curso && curso.portada2!=null" style="background-image: url({{curso.portada2}})"  >
+    <!-- <div class="spotlight" *ngIf="curso && curso.url_image==''" style="background-image: url(assets/img/lerning.jpg)"  > -->
+    <div class="gradient" ></div>
+    
+    <div class="info" *ngIf="curso">
+      <!-- <img class="title" [src]="cursoMasVisto && cursoMasVisto.url_image==null ? 'assets/img/portada.jpg' : cursoMasVisto.url_image">  -->
+      <!-- <span class="titleMasvisto">{{curso.name}}</span>
+     <span class="rating"><ion-icon name="star-outline"></ion-icon> {{ curso.view }}</span>  -->
+
+      <ion-row class="ion-align-items-center">
+        <ion-col size="4" class="ion-tex-center">
+          <div class="btn-vertical">
+           <img  class="claseMinimagen" [src]="curso.url_image==null || curso.url_image=='' ? 'assets/img/portada.jpg' : curso.url_image" />
+          </div>
+        </ion-col>
+        <ion-col size="3" class="ion-tex-center">
+          <!-- <span class="rating">Visto: {{ curso.view }}</span><br> -->
+          <a (click)="storeGuardado(curso.id)">
+            <ion-icon name="heart" color="danger"></ion-icon><p class="textoti"><b>Guardar</b></p>
+          </a> 
+        </ion-col>
+        <ion-col size="5" class="ion-text-center">
+          <div class="btn-vertical">
+            <ion-chip style="margin-bottom: 64px;">
+              
+              <ion-icon *ngIf="curso.tags=='Lecciones'" name="school-outline" color="primary"></ion-icon>
+              <ion-icon *ngIf="curso.tags=='Preguntas'" name="chatbubble-ellipses-outline" color="primary"></ion-icon>
+              <ion-icon *ngIf="curso.tags=='Dosis diaria'" name="sunny-outline" color="primary"></ion-icon>
+              <ion-label>{{curso.tags}}</ion-label>
+            </ion-chip><br>
+            <div></div>
+          </div>
+        </ion-col>
+      </ion-row>
+
+    </div>
+ 
+  </div>
+
+  <!-- <div class="spotlight" *ngIf="curso && curso.url_image!=''" style="background-image: url({{curso.url_image}})"  > -->
+    <div class="spotlight" *ngIf="curso && curso.portada2==null" style="background-image: url(assets/img/lerning.jpg)"  >
+    <div class="gradient" ></div>
+    
+    <div class="info" *ngIf="curso">
+      <!-- <img class="title" [src]="cursoMasVisto && cursoMasVisto.url_image==null ? 'assets/img/portada.jpg' : cursoMasVisto.url_image">  -->
+      <!-- <span class="titleMasvisto">{{curso.name}}</span>
+     <span class="rating"><ion-icon name="star-outline"></ion-icon> {{ curso.view }}</span>  -->
+
+      <ion-row class="ion-align-items-center">
+        <ion-col size="4" class="ion-tex-center">
+          <div class="btn-vertical">
+           <img  class="claseMinimagen" [src]="curso.url_image==null || curso.url_image=='' ? 'assets/img/portada.jpg' : curso.url_image" />
+          </div>
+        </ion-col>
+        <ion-col size="3" class="ion-tex-center">
+          <!-- <span class="rating">Visto: {{ curso.view }}</span><br> -->
+          <a (click)="storeGuardado(curso.id)">
+            <ion-icon name="heart" color="danger"></ion-icon><p class="textoti"><b>Guardar</b></p>
+          </a> 
+        </ion-col>
+        <ion-col size="5" class="ion-text-center">
+          <div class="btn-vertical">
+            <ion-chip style="margin-bottom: 64px;">
+              
+              <ion-icon *ngIf="curso.tags=='Lecciones'" name="school-outline" color="primary"></ion-icon>
+              <ion-icon *ngIf="curso.tags=='Preguntas'" name="chatbubble-ellipses-outline" color="primary"></ion-icon>
+              <ion-icon *ngIf="curso.tags=='Dosis diaria'" name="sunny-outline" color="primary"></ion-icon>
+              <ion-icon *ngIf="curso.tags=='Programa'" name="bulb-outline" color="primary"></ion-icon>
+              <ion-label>{{curso.tags}}</ion-label>
+            </ion-chip><br>
+            <div></div>
+          </div>
+        </ion-col>
+      </ion-row>
+
+    </div>
+ 
+  </div>
+
+  <ion-row>
+    <ion-col size="12" *ngIf="curso && curso.descripcion!=''" style="padding: 20px;">
+      <p>{{curso.descripcion}}</p>
+    </ion-col>
+    <ion-col size="12" class="ion-text-center">
+      <a (click)="reproducir(curso.videos[0].url,curso.videos[0].suscription_id)">
+        <div class="botonPlay">
+          <ion-icon name="play" color="light"></ion-icon>
+          <span>Reproducir</span>
+        
+        </div>
+      </a>
+    </ion-col>
+  </ion-row>
+  
+  <ion-grid>
+   
+    <ion-row *ngIf="curso">
+      <ion-card *ngFor="let video of curso.videos" style="border-radius: 10px;">
+        <a (click)="reproducir(video.url,video.suscription_id)">
+          <img [src]="video.url_image==null || video.url_image=='' ? 'assets/img/portada_vacia.jpg' : video.url_image" />
+        </a>
+        <ion-card-header class="estiloCard">
+          <ion-card-subtitle>
+            <ion-chip>
+              
+              <ion-icon *ngIf="video.tags=='Lecciones'" name="school-outline" color="primary"></ion-icon>
+              <ion-icon *ngIf="video.tags=='Preguntas'" name="chatbubble-ellipses-outline" color="primary"></ion-icon>
+              <ion-icon *ngIf="video.tags=='Dosis diaria'" name="sunny-outline" color="primary"></ion-icon>
+              <ion-label>{{video.tags}}</ion-label>
+            </ion-chip>
+          </ion-card-subtitle>
+          <ion-card-title>{{video.name}}</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+
+    </ion-row>
+  </ion-grid>
+  <div id="fullscreen" slot="fixed"></div>
+</ion-content>

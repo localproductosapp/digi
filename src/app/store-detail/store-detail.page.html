@@ -1,0 +1,179 @@
+<ion-header>
+
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/stores">Volver</ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center"><img src="assets/img/logo.png" height="70"></ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+  
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content >
+  <ion-grid class="mb-20">
+    <ion-row>
+      <ion-col size="12" class="ion-text-center">
+        <ion-spinner *ngIf="spinner" name="crescent"></ion-spinner>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="store">
+      <img class="imageBig" [src]="store.banner">
+      <ion-card class="cardito">
+        <ion-card-header>
+          <ion-avatar class="avat">
+            <img [src]="store.gravatar">
+          </ion-avatar>
+          <!-- <ion-item-divider>
+          <ion-card-title >{{store.store_name}}</ion-card-title>
+          </ion-item-divider> -->
+        </ion-card-header>
+      
+        <ion-card-content>
+
+          <ion-label>
+            <h1 class="txt-Title">{{store.store_name}}</h1>
+            <p class="txt-center">{{store.categoria_principal}}</p>
+          </ion-label>
+         
+            <!-- <ion-card-title >{{store.store_name}}</ion-card-title><br>
+          <ion-text>
+            Categoría principal:{{store.categoria_principal}}
+ 
+          </ion-text> -->
+
+       
+
+          <!-- <ion-card-title class="ptpb20"><ion-icon name="person-circle-outline" class="colorPrincipal"></ion-icon>Contacto</ion-card-title> -->
+ 
+
+      <!-- <ion-item-divider>
+        <ion-text>
+          <ion-icon name="call"></ion-icon> {{store.phone}}<br>
+    
+        </ion-text>
+      </ion-item-divider> -->
+   
+      <!-- <ion-card-title class="ptpb20"><ion-icon name="cube" class="colorPrincipal"></ion-icon>Productos</ion-card-title>
+ 
+
+      <ion-item-divider>
+
+        <ion-grid *ngIf="spinnerProduct">
+          <ion-row>
+            <ion-col size="12" class="ion-text-center">
+              <ion-spinner *ngIf="spinnerProduct" name="crescent"></ion-spinner>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <ion-slides pager="true" [options]="slideOpts" *ngIf="productSotre" (ionSlideReachEnd)="moreProduct()">
+
+          <ion-slide *ngFor="let product of productSotre">
+            <a routerLink="/detailProduct/{{product.id}}" >
+             <img [src]="product.images[0].src" width="50" height="50">
+              <h1>Slide 1</h1> 
+
+              <ion-card>
+                <div class="tag2" *ngIf="product.productoLocal=='si' || product.productoLocal=='Si' || product.productoLocal=='SI'"><img src="assets/img/prodLocal.png" ></div>
+                <div class="tag" *ngIf="product.stock_status!='instock'">Fuera de Stock</div>
+                <div class="tag3" *ngIf="product.porcentaje && product.porcentaje!=''">- {{product.porcentaje}} %</div>
+                <img class="wdt-100" [src]="product.images[0].src" />
+              
+                  <ion-card-subtitle class="ion-text-center cl-b">{{product.name}}</ion-card-subtitle>
+                  <ion-card-subtitle class="ion-text-center ft-13 colorText">{{product.regular_price!=''?product.regular_price+'€':'Consultar'}} </ion-card-subtitle>
+              
+                
+              </ion-card>
+
+            </a>
+
+        
+          </ion-slide>
+      
+        </ion-slides>
+  
+      </ion-item-divider> -->
+          
+
+        </ion-card-content>
+      </ion-card>
+
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+
+
+  
+  <!-- <ion-row *ngIf="store"> -->
+ 
+    <!-- <ion-col size="12">
+     
+      <ion-slides pager="true" [options]="slideOpts" *ngIf="productSotre">
+
+     
+
+        <ion-slide *ngFor="let product of productSotre">
+          <a routerLink="/detailProduct/{{product.id}}" >
+        
+
+            <ion-card>
+              <div class="tag2" *ngIf="product.productoLocal=='si' || product.productoLocal=='Si' || product.productoLocal=='SI'"><img src="assets/img/prodLocal.png" ></div>
+              <div class="tag" *ngIf="product.in_stock!=true">Fuera de Stock</div>
+              <div class="tag3" *ngIf="product.porcentaje && product.porcentaje!=''">- {{product.porcentaje}} %</div>
+              <img class="wdt-100" [src]="product.images[0].src" />
+            
+                <ion-card-subtitle class="ion-text-center cl-b">{{product.name}}</ion-card-subtitle>
+                <ion-card-subtitle class="ion-text-center ft-13 colorText">{{product.regular_price!=''?product.regular_price+'€':'Consultar'}} </ion-card-subtitle>
+            
+              
+            </ion-card>
+
+          </a>
+
+      
+        </ion-slide>
+    
+      </ion-slides>
+    </ion-col> -->
+
+    
+
+  <!-- </ion-row> -->
+  <ion-row *ngIf="productSotre"> 
+    <ion-col size="12">
+      <a routerLink="/tabs/productstore/{{store.id}}">
+        <ion-title color="dark" size="large" *ngIf="store">Productos <ion-icon name="arrow-forward-circle-outline" class="valignIcon"></ion-icon></ion-title>
+     
+      </a>
+
+    </ion-col>
+
+    <ion-col size="6" *ngFor="let product of productSotre">
+      <a routerLink="/detailProduct/{{product.id}}">
+        <ion-card>
+          <div class="tag2" *ngIf="product.productoLocal=='si' || product.productoLocal=='Si' || product.productoLocal=='SI'"><img src="assets/img/prodLocal.png" ></div>
+          <div class="tag" *ngIf="product.in_stock!=true">Fuera de Stock</div>
+          <div class="tag3" *ngIf="product.porcentaje && product.porcentaje!=''">- {{product.porcentaje}} %</div>
+          <img class="wdt-100" [src]="product.images[0].src" />
+        
+            <ion-card-subtitle class="ion-text-center cl-b">{{product.name}}</ion-card-subtitle>
+            <ion-card-subtitle class="ion-text-center ft-13 colorText">{{product.regular_price!=''?product.regular_price+'€':'Consultar'}} </ion-card-subtitle>
+        
+            <div class="ion-text-center"  [innerHTML]="product.Enviogratis"></div>
+        </ion-card>
+      </a>
+    </ion-col>
+    <ion-col size="12" class="ion-text-center">
+      <ion-spinner *ngIf="spinner" name="crescent"></ion-spinner>
+    </ion-col>
+
+</ion-row>
+  </ion-grid>
+
+
+ 
+</ion-content>

@@ -1,0 +1,88 @@
+<ion-header #header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/home">Volver</ion-back-button>
+    </ion-buttons>
+    <!-- <ion-title >Cursos mas Vistos</ion-title> -->
+    <img class="logo" src="/assets/img/logo.png">
+    <!-- <ion-row class="ion-justify-content-center ion-text-center">
+      <ion-col size="4" class="ion-text-right">
+        TV Shows
+      </ion-col>
+      <ion-col size="4">
+        Movies
+      </ion-col>
+      <ion-col size="4" tappable (click)="openCategories()" class="ion-text-left">
+        Categories <ion-icon name="caret-down-outline"></ion-icon>
+      </ion-col>
+    </ion-row> -->
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  <ion-grid class="mb-20">
+    <ion-row>
+      <ion-col size="12" class="ion-text-center">
+        <ion-spinner *ngIf="spinner" name="crescent"></ion-spinner>
+      </ion-col>
+    </ion-row>
+    <ion-row >
+      <img class="imageBig" src="assets/img/elearning.jpg">
+      <ion-card class="cardito">
+        <ion-card-header>
+          <ion-avatar class="avat">
+            <img [src]="avatar==null || avatar=='' ? 'assets/img/avatar.jpg' : avatar">
+          </ion-avatar>
+          <!-- <ion-item-divider>
+          <ion-card-title >{{store.store_name}}</ion-card-title>
+          </ion-item-divider> -->
+        </ion-card-header>
+      
+        <ion-card-content>
+
+          <ion-label>
+            <!-- <h1 class="txt-Title">¡Hola!</h1> -->
+            <h1 class="txt-Title">Hola, {{nombre}}</h1>
+            <p class="txt-center">Plan:{{plan==2 ? 'Freemiun' : 'Premiun'}}</p>
+          </ion-label>
+         
+        
+
+        </ion-card-content>
+      </ion-card>
+      <ion-col size="12">
+       
+        <ion-list > 
+          <div class="item-content">
+          <ion-item class="item-background-color">
+            <a routerLink="/tabs/videosGuardado">
+              <ion-label><ion-icon name="heart" color="danger"></ion-icon> Guardados</ion-label>
+            </a>
+          </ion-item>
+          <ion-item class="item-background-color">
+            <a routerLink="/tabs/setting">
+              <ion-label><ion-icon name="settings" color="danger"></ion-icon> Configuración</ion-label>
+            </a>
+          </ion-item>
+        </div>
+         
+        </ion-list>
+      
+      </ion-col>
+
+      <ion-col size="12" class="txt-center">
+        <img src="assets/img/digi.jpeg" style="width: 50%;">
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+
+
+ 
+  </ion-grid>
+
+
+ 
+</ion-content>

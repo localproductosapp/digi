@@ -1,0 +1,170 @@
+
+<ion-header #header class="ion-no-border">
+  <ion-toolbar>
+    <img class="logo" src="/assets/img/logo.png">
+    <ion-row class="ion-justify-content-center ion-text-center">
+      <ion-col size="4" class="ion-text-right">
+        <a routerLink="/tabs/tag/Dosis diaria" >Dosis diaria</a>
+      </ion-col>
+      <ion-col size="4">
+        <a routerLink="/tabs/tag/Programa" > Programa</a>
+      </ion-col>
+      <ion-col size="4" tappable (click)="openCategories()" class="ion-text-left">
+        Categorias <ion-icon name="caret-down-outline"></ion-icon>
+      </ion-col>
+    </ion-row>
+
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content [fullscreen]="true" scrollEvents="true" [appHideHeader]="header">
+
+  <div class="spotlight" *ngIf="cursoMasVisto && cursoMasVisto.portada2!=null" style="background-image: url({{cursoMasVisto.portada2}})" >
+    <div class="gradient" s></div>
+    
+    <div class="info" *ngIf="cursoMasVisto">
+      <!-- <img class="title" [src]="cursoMasVisto && cursoMasVisto.url_image==null ? 'assets/img/portada.jpg' : cursoMasVisto.url_image">  -->
+      <span class="titleMasvisto">{{cursoMasVisto.name}}</span>
+     <!-- <span class="rating"><ion-icon name="star-outline"></ion-icon> {{ cursoMasVisto.view }}</span>  -->
+
+      <ion-row class="ion-align-items-center">
+        <ion-col size="4" class="ion-tex-center">
+          <div class="btn-vertical" style="color: white;">
+            
+              <ion-icon name="heart-outline" (click)="storeGuardado(cursoMasVisto.id)"></ion-icon>
+              <span (click)="storeGuardado(cursoMasVisto.id)">Guardar</span>
+           
+          </div>
+        </ion-col>
+        <ion-col size="4" class="ion-tex-center">
+          <a (click)="cursosVistos(cursoMasVisto.id)" routerLink="/detailCurso/{{cursoMasVisto.id}}">
+            <div class="btn-play">
+              <ion-icon name="play" color="danger"></ion-icon>
+              <span>Reproducir</span>
+            
+            </div>
+          </a>
+        </ion-col>
+        <ion-col size="4" class="ion-tex-center">
+          <div class="btn-vertical">
+            <ion-icon name="information-circle-outline"></ion-icon>
+            <span>Info</span>
+          </div>
+        </ion-col>
+      </ion-row>
+
+    </div>
+  </div>
+
+
+
+
+  <div class="spotlight" *ngIf="cursoMasVisto && cursoMasVisto.portada2==null" style="background-image: url(assets/img/banner_vistos.png)" >
+    <div class="gradient" style="height: 275px;"></div>
+    
+    <div class="info" *ngIf="cursoMasVisto">
+      <!-- <img class="title" [src]="cursoMasVisto && cursoMasVisto.url_image==null ? 'assets/img/portada.jpg' : cursoMasVisto.url_image">  -->
+      <span class="titleMasvisto">{{cursoMasVisto.name}}</span>
+     <!-- <span class="rating"><ion-icon name="star-outline"></ion-icon> {{ cursoMasVisto.view }}</span>  -->
+
+      <ion-row class="ion-align-items-center">
+        <ion-col size="4" class="ion-tex-center">
+          <div class="btn-vertical" style="color: white;">
+            
+              <ion-icon name="heart-outline" (click)="storeGuardado(cursoMasVisto.id)"></ion-icon>
+              <span (click)="storeGuardado(cursoMasVisto.id)">Guardar</span>
+           
+          </div>
+        </ion-col>
+        <ion-col size="4" class="ion-tex-center">
+          <a (click)="cursosVistos(cursoMasVisto.id)" routerLink="/detailCurso/{{cursoMasVisto.id}}">
+            <div class="btn-play">
+              <ion-icon name="play" color="danger"></ion-icon>
+              <span>Reproducir</span>
+            
+            </div>
+          </a>
+        </ion-col>
+        <ion-col size="4" class="ion-tex-center">
+          <div class="btn-vertical">
+            <ion-icon name="information-circle-outline"></ion-icon>
+            <span>Info</span>
+          </div>
+        </ion-col>
+      </ion-row>
+
+    </div>
+  </div>
+
+
+  <div *ngFor="let section of categories" class="ion-padding">
+    <span class="section-title">{{ section.name }}</span>
+    <ion-slides [options]="slideOpts" style="margin-bottom: -71px;">
+
+      <ion-slide *ngFor="let series of section.cursos">
+        <a (click)="cursosVistos(series.id)" routerLink="/tabs/detailCurso/{{series.id}}">
+        <img class="tamanoImg"  [src]="series && series.url_image==null ? 'assets/img/portada.jpg' : series.url_image">
+        <ion-grid class="claGrid" *ngIf="series && series.tags!='' || series.tags!=null">
+          <ion-row>
+            <ion-col size="12" style="text-align: right;" >
+              <ion-chip class="bckChip" >
+      
+                <ion-icon *ngIf="series.tags=='Lecciones'" name="school-outline" color="primary"></ion-icon>
+                <ion-icon *ngIf="series.tags=='Preguntas'" name="chatbubble-ellipses-outline" color="primary"></ion-icon>
+                <ion-icon *ngIf="series.tags=='Dosis diaria'" name="sunny-outline" color="primary"></ion-icon>
+                <ion-icon *ngIf="series.tags=='Programa'" name="bulb-outline" color="primary"></ion-icon>
+                <!-- <ion-icon name="bulb"></ion-icon> -->
+                <ion-label>{{series.tags}}</ion-label>
+              </ion-chip>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="coraPremiun">
+          <ion-row>
+            
+              <ion-col size="6" style="text-align: left;">
+                <a href="#"  *ngIf="series.premiun==1">
+                  <img src="/assets/img/premiun.png" style="width: 18px;"/>
+                </a> 
+              </ion-col>
+            
+            
+            <ion-col size="6" style="text-align: right;">
+              <a (click)="storeGuardado(series.id)">
+                <ion-icon name="heart" color="danger"></ion-icon>
+              </a> 
+            </ion-col>
+         
+          </ion-row>
+        </ion-grid>
+        <ion-text class="nombreCurso">{{series.name}}</ion-text>
+        </a>
+       
+        <!-- <div class="continue" >
+ 
+          <img [src]="'/assets/mockdata/'+section.type+'-'+series.id+'.jpg'">
+          <div class="progress-bar">
+            <div class="progress" [style.width]="series.progress + '%'"></div>
+          </div>
+          <ion-row class="ion-no-padding">
+            <ion-col size="6" class="ion-text-left ion-no-padding">
+              <ion-button fill="clear" color="medium" size="small">
+                <ion-icon name="information-circle-outline" slot="icon-only"></ion-icon>
+              </ion-button>
+            </ion-col>
+            <ion-col size="6" class="ion-text-right ion-no-padding">
+              <ion-button fill="clear" (click)="openInfo(series)" color="medium" size="small">
+                <ion-icon name="ellipsis-vertical" slot="icon-only"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </div> -->
+   
+      </ion-slide>
+
+    </ion-slides>
+    
+  </div>
+</ion-content>

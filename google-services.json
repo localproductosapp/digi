@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "291881943676",
+    "project_id": "digitalizap-151ad",
+    "storage_bucket": "digitalizap-151ad.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:291881943676:android:75cda61f71d9e52c597ff9",
+        "android_client_info": {
+          "package_name": "com.localdescuentos.Digitalizap"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "291881943676-46c62h0vtaqqa4svdggeftrdgf300i9f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8tgO8mfXeK5YvnmlqSU4z3gEcSClR5vQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "291881943676-46c62h0vtaqqa4svdggeftrdgf300i9f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

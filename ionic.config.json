@@ -1,0 +1,7 @@
+{
+  "name": "Digitalizap",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,53 @@
+ion-menu{
+    --width: 100%;
+  }
+
+  .colorPrincipal{
+    color:#11d1d3;
+}
+
+ion-text{
+    font-size: 20px;
+}
+
+.iconSize{
+    font-size: 20px;
+    vertical-align: bottom;
+}
+
+// ion-content{
+//     --background:#3b484e;
+//     --color:#ffffff;
+// }
+
+.colorCol{
+    background: white;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    padding: 12px;
+}
+
+ion-row{
+    margin-top: 20px;
+}
+
+.mbp{
+    margin-bottom: 50px;
+}
+
+.mb30{
+    margin-bottom: 30px;
+}
+.labelVertical{
+    vertical-align: super;
+}
+
+.imgIcon{
+    
+        width: 10%;
+
+}
+a{
+    color:black;
+    font-size:16px;
+}

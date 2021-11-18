@@ -1,0 +1,43 @@
+<ion-header #header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/home">Volver</ion-back-button>
+    </ion-buttons>
+    <!-- <ion-title >Cursos mas Vistos</ion-title> -->
+    <img class="logo" src="/assets/img/logo.png">
+    <!-- <ion-row class="ion-justify-content-center ion-text-center">
+      <ion-col size="4" class="ion-text-right">
+        TV Shows
+      </ion-col>
+      <ion-col size="4">
+        Movies
+      </ion-col>
+      <ion-col size="4" tappable (click)="openCategories()" class="ion-text-left">
+        Categories <ion-icon name="caret-down-outline"></ion-icon>
+      </ion-col>
+    </ion-row> -->
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" scrollEvents="true" [appHideHeader]="header" style="top: 76px;">
+  <ion-list>
+    <ion-item>
+      <ion-label><a routerLink="/tabs/privacypolicy" class="labelList">Política de Privacidad</a></ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label><a routerLink="/tabs/terms" class="labelList">Términos y Condiciones</a></ion-label>
+    </ion-item>
+    <!-- <ion-item>
+      <ion-label><a routerLink="/tabs/returnpolicy" class="labelList">Política de Devoluciones</a></ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label><a routerLink="/tabs/shippingpolicy" class="labelList">Política de Envío</a></ion-label>
+    </ion-item>
+    <ion-item> -->
+      <ion-item>
+      <ion-label><a (click)="cerrarsession()" class="labelList">Cerrar Sesión</a></ion-label>
+    </ion-item>
+ 
+  </ion-list>
+</ion-content>

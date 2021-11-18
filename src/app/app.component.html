@@ -1,0 +1,38 @@
+<ion-app>
+  <ion-menu side="end" contentId="main">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title class="ion-text-center"><img src="assets/img/logo.png" height="70"></ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-grid>
+        <ion-row *ngIf="categories">
+          <ion-col size="12" class="ion-text-center mb30">
+            <ion-text>CATEGORIAS</ion-text>
+          </ion-col>
+      
+          <!-- <ion-col size="12" class="ion-text-center colorCol" *ngFor="let category of categories">
+
+            <a routerLink="/tabs/products/{{category.id}}" (click)="closeMenu()">
+      
+           
+               <p color="dark" class="labelVertical" [innerHTML]="category.name"></p> 
+             
+            </a>
+          </ion-col> -->
+        
+        </ion-row>
+      </ion-grid>
+      <ion-item *ngFor="let category of categories" routerLink="/tabs/products/{{category.id}}" (click)="closeMenu()">
+        <ion-avatar slot="start">
+          <img [src]="category.image.src" *ngIf="category.image">
+        </ion-avatar>
+        <ion-label [innerHTML]="category.name">
+       
+        </ion-label>
+      </ion-item>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main"></ion-router-outlet>
+</ion-app>

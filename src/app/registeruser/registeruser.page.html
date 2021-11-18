@@ -1,0 +1,64 @@
+<ion-header #header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/profile2">Volver</ion-back-button>
+    </ion-buttons>
+    <!-- <ion-title >Cursos mas Vistos</ion-title> -->
+    <img class="logo" src="/assets/img/logo.png">
+    <!-- <ion-row class="ion-justify-content-center ion-text-center">
+      <ion-col size="4" class="ion-text-right">
+        TV Shows
+      </ion-col>
+      <ion-col size="4">
+        Movies
+      </ion-col>
+      <ion-col size="4" tappable (click)="openCategories()" class="ion-text-left">
+        Categories <ion-icon name="caret-down-outline"></ion-icon>
+      </ion-col>
+    </ion-row> -->
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" scrollEvents="true"  style="top: 76px;">
+  <ion-grid class="fondo-login" >
+    <ion-row *ngIf="Sesion">
+        <ion-col size="12" class="ion-text-center ion-margin-vertical">
+          <ion-text class="labelTitle"><h2 class="labelTitle">Nuevo usuario</h2> </ion-text> 
+        </ion-col>
+    </ion-row >
+    <ion-row class="form ion-margin ion-padding" >
+      <ion-col size="12" class="ion-text-center">
+        <ion-list lines="none">
+          <!-- <ion-item class="confondo"> -->
+            <ion-input class="confondo" [(ngModel)]="names" placeholder="Nombre" type="text"></ion-input>
+          <!-- </ion-item> -->
+          <!-- <ion-item class="confondo"> -->
+            <ion-input class="confondo"  [(ngModel)]="email" placeholder="Email" type="email"></ion-input>
+            <ion-input class="confondo"  [(ngModel)]="password" placeholder="Contraseña" type="password"></ion-input>
+          <!-- </ion-item> -->
+        </ion-list>
+        <!-- <ion-row>
+          <ion-col size="12" class="ion-text-right ion-no-padding ion-no-margin">
+            <ion-button color="light" fill="clear" size="small" class="btn fs-min">olvide mi contraseña</ion-button>
+          </ion-col>
+        </ion-row> -->
+        <ion-row>
+
+        <ion-col size="12" class="ion-text-center">
+          <ion-button  class="btn negroLocal" (click)="register()">Registrarse</ion-button>
+        </ion-col>
+  
+      </ion-row>
+      <!-- <ion-row>
+        <ion-col size="12" class="ion-text-center">
+          <ion-button routerLink="/signup" color="orange" class="btn">Registro</ion-button>
+        </ion-col>
+      </ion-row> -->
+       </ion-col>
+       <ion-col size="12" class="ion-text-center">
+        <ion-spinner *ngIf="spinner" name="crescent"></ion-spinner>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

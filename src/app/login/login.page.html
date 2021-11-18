@@ -1,0 +1,151 @@
+
+<ion-header #header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start" *ngIf="ver">
+      <ion-back-button defaultHref="/">Volver</ion-back-button>
+    </ion-buttons>
+    <!-- <ion-title >Cursos mas Vistos</ion-title> -->
+    <img class="logo" src="/assets/img/logo.png">
+    <!-- <ion-row class="ion-justify-content-center ion-text-center">
+      <ion-col size="4" class="ion-text-right">
+        TV Shows
+      </ion-col>
+      <ion-col size="4">
+        Movies
+      </ion-col>
+      <ion-col size="4" tappable (click)="openCategories()" class="ion-text-left">
+        Categories <ion-icon name="caret-down-outline"></ion-icon>
+      </ion-col>
+    </ion-row> -->
+
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true" scrollEvents="true" [appHideHeader]="header" style="top: 76px;">
+  <!-- <ion-card class="tarjeta" *ngIf="Sesion">
+    <ion-card-header>
+      <ion-card-title class="labelTitle">¿Todavía no has iniciado sesión?</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-item >
+        <ion-avatar slot="start">
+          <img src="assets/img/icono_1.png" >
+        </ion-avatar>
+        <p class="centrar">
+       Sigue tus pedidos
+        </p>
+      </ion-item>
+      <ion-item >
+        <ion-avatar slot="start">
+          <img src="assets/img/icono_2.png" >
+        </ion-avatar>
+        <p class="centrar">
+       Construye tu lista de favoritos
+        </p>
+      </ion-item>
+      <ion-item >
+        <ion-avatar slot="start">
+          <img src="assets/img/icono_2_(1).png" >
+        </ion-avatar>
+        <p class="centrar">
+       Descúbre marcas locales únicas
+        </p>
+      </ion-item>
+    </ion-card-content>
+  </ion-card> -->
+  <ion-grid class="fondo-login" >
+    <ion-row *ngIf="Sesion">
+        <ion-col size="12" class="ion-text-center ion-margin-vertical">
+          <ion-text class="labelTitle"><h2 class="labelTitle">Iniciar Sesión Ahora</h2> </ion-text> 
+        </ion-col>
+        <ion-col size="12" style="text-align: center;">
+          <img  src="assets/img/digi.jpeg" style="width: 50%;">
+        </ion-col>
+    </ion-row >
+    <ion-row class="form ion-margin ion-padding" *ngIf="Sesion">
+      <ion-col size="12" class="ion-text-center">
+        <ion-list lines="none">
+          <!-- <ion-item class="confondo"> -->
+            <ion-input class="confondo" [(ngModel)]="user" placeholder="Email" type="text"></ion-input>
+          <!-- </ion-item> -->
+          <!-- <ion-item class="confondo"> -->
+            <ion-input class="confondo" [(ngModel)]="password" placeholder="Contraseña" type="password"></ion-input>
+          <!-- </ion-item> -->
+        </ion-list>
+        <!-- <ion-row>
+          <ion-col size="12" class="ion-text-right ion-no-padding ion-no-margin">
+            <ion-button color="light" fill="clear" size="small" class="btn fs-min">olvide mi contraseña</ion-button>
+          </ion-col>
+        </ion-row> -->
+        <ion-row>
+          <ion-col size="12">
+            <a routerLink="/tabs/forgotpassword"><p class="textLink">¿Has olvidado la contraseña?</p></a>
+          </ion-col>
+        <ion-col size="12" class="ion-text-center">
+          <ion-button  class="btn negroLocal" (click)="login()">Iniciar sesión</ion-button>
+        </ion-col>
+        <ion-col size="12">
+          <a routerLink="/register"> <p class="textLink">¿No tienes una cuenta? <i class="textLinkBlue">Registrate</i></p></a>
+        </ion-col>
+      </ion-row>
+      <!-- <ion-row>
+        <ion-col size="12" class="ion-text-center">
+          <ion-button routerLink="/signup" color="orange" class="btn">Registro</ion-button>
+        </ion-col>
+      </ion-row> -->
+       </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid *ngIf="spinner">
+    <ion-row>
+      <ion-col size="12" class="ion-text-center">
+        <ion-spinner *ngIf="spinner" name="crescent"></ion-spinner>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- *ngIf="ver" -->
+  <!-- <ion-card >
+
+    <ion-card-header>
+      <ion-card-subtitle>Bienvenido(a)</ion-card-subtitle>
+      <ion-card-title>{{nombre}}</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+     <p>Email: {{correo}}</p>
+     <p>Fecha de registro: {{registro}}</p>
+
+    </ion-card-content>
+  </ion-card> -->
+  <ion-grid *ngIf="ver">
+    <ion-row>
+      <ion-col size="12" class="ion-text-center">
+        <ion-text class="labelTitle2"><h2 class="labelTitle2">Hola, {{nombre}}</h2> </ion-text> 
+      </ion-col>
+      <ion-col size="12">
+        <ion-list>
+          <ion-item>
+            <ion-label><a routerLink="/tabs/detailsaccount" class="labelList"> Detalles de la cuenta</a></ion-label>
+          </ion-item>
+          <!-- <ion-item>
+            <ion-label><a routerLink="/tabs/orders/{{idUsuario}}" class="labelList">Pedidos</a></ion-label>
+          </ion-item> -->
+          <!-- <ion-item>
+            <ion-label><a routerLink="/tabs/setting" class="labelList">Configuración</a></ion-label>
+          </ion-item> -->
+       
+        </ion-list>
+      </ion-col>
+
+      <ion-col size="12" class="ion-text-center">
+        <img src="assets/img/digi.jpeg" style="width: 50%;">
+      </ion-col>
+  
+      <ion-col size="12" class="ion-text-center">
+        <ion-text class="labelTitle2"><h2 class="labelTitle2">¡Gracias por apoyar nuestra app!</h2> </ion-text> 
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+</ion-content>
+

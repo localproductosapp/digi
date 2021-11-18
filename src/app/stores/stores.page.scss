@@ -1,0 +1,62 @@
+.wdt-100{
+    width: 100%;
+    max-height: 200px;
+}
+.cl-b{
+    color:black;
+    font-weight: 800;
+}
+.ft-13{
+    font-size: 13px;
+}
+
+.mapboxgl-ctrl-attrib-inner{
+    display:none !important;
+}
+
+.contenedores{
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.subcategories{
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-right: 20px;
+    color: #78e4e6;
+}
+
+.subcateActiva{
+    background: #78e4e6;
+    color: white;
+}
+.oculto{
+    display:none;
+}
+
+.mapboxgl-canvas{
+    width: 100% !important;
+    height: 500px !important;
+}
+
+.mapboxgl-canvas-container {
+
+    height: 500px;
+    width: 100%;
+
+}
+
+.map_box_container{
+    position: relative;
+    height: 500px !important;
+    width: 100% !important;
+  }
+  
+    #map {
+    //   position: absolute;
+    //   top: 0;
+    //   bottom: 0;
+      width: 100%;
+    }

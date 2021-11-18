@@ -1,0 +1,73 @@
+.colorText{
+    color:#00ced1;
+}
+.tag{
+    position: relative;
+    top: 25px;
+    background: #000000ba;
+    color: white;
+    width: 70%;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px;
+}
+
+.tag2{
+    position: absolute;
+    left: 91px;
+    width: 60px;
+    height: 60px;
+
+}
+
+.tag3{
+    position: absolute;
+    background-color: #00ced1;
+    padding: 10px;
+    color: white;
+}
+
+@media(min-width:425px){
+
+        .tag2{
+            position: absolute;
+            left: 115px;
+            width: 60px;
+            height: 60px;
+
+         }
+}
+
+.ios > .tag2{
+    left: 79px;
+}
+
+.subcategories{
+    font-size: 13px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 10px;
+    color: grey;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 10px;
+    min-height: 40px;
+    max-height: 40px;
+    min-width: 90%;
+
+}
+.subcategories p{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.subcateActiva{
+    background: #00ced1 !important;
+    color: white !important;
+}
+
+ion-slides > .swiper-wrapper{
+    transform: translate3d(20px, 0, 0) !important;
+    transition-duration: 0ms;
+}
+

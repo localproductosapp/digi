@@ -26,6 +26,7 @@ export class CursosMasVistosPage implements OnInit {
   spinnerCosmetic=false
   spinnerBook=false
   idUsuario
+  arregloCursos=[]
   cateSpinner=false
   categories
     productFeatured
@@ -97,7 +98,22 @@ export class CursosMasVistosPage implements OnInit {
                 this.cateSpinner=false
                 
                 this.categories = JSON.parse(JSON.stringify(res)).data;
-                console.log('esta categoria cursois',this.categories );
+
+                this.categories.forEach(categorias => {
+                  // console.log('este es el primer elemento',categorias)
+                     categorias.cursos.forEach(element => {
+
+                     this.arregloCursos.push(element)
+
+                   
+               
+                   
+                     
+                   });
+             });
+
+               console.log('cursillos',this.arregloCursos)
+                // console.log('esta categoria cursois',this.categories );
              
               }, err => {
                this.cateSpinner=false

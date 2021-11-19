@@ -55,16 +55,16 @@
       </ion-grid>
 
         <ion-grid>
-          <ion-row *ngFor="let items of categories">
+          <ion-row >
 
     
-            <ion-col size="4" *ngFor="let item of items.cursos" style="height: 168px;">
+            <ion-col size="4" *ngFor="let item of arregloCursos" style="height: 168px;">
 
               <a (click)="cursosVistos(item.id)" routerLink="/tabs/detailCurso/{{item.id}}">
                 <img class="tamanoImg"  [src]="item && item.url_image==null ? 'assets/img/portada.jpg' : item.url_image">
                 <ion-grid class="claGrid" *ngIf="item && item.tags!='' || item.tags!=null">
                   <ion-row>
-                    <ion-col size="12" style="text-align: center;" >
+                    <ion-col size="12" class="esteIos" style="text-align: center;" >
                       <ion-chip class="bckChip" >
               
                         <ion-icon *ngIf="item.tags=='Lecciones'" name="school-outline" color="primary"></ion-icon>

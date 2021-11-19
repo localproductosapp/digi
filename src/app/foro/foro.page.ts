@@ -138,14 +138,14 @@ console.log('idusuario',this.idUsuario)
         enviarRespuesta(idpregunta){
 
           // responder
-          let respoesta= (<HTMLInputElement>document.getElementById("respuesta")).value
+          let respoesta= (<HTMLInputElement>document.getElementById("respuesta"+idpregunta)).value
        
           console.log('esta es la respuesta',respoesta)
       // console.log('respues',this.respuesta)
           this.service.responder({answer:respoesta,question_id:idpregunta,user_id:this.idUsuario})
           .then(res => {
             // this.cateSpinner=false
-            console.log('guardo la pregunta',res);
+            console.log('guardo la respoesta',res);
             // this.categories = JSON.parse(JSON.stringify(res)).data;
             this.presentToast('Has enviado una respuesta')
             this.preguntasRespuestas()

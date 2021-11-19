@@ -147,7 +147,7 @@ console.log('idusuario',this.idUsuario)
             // this.cateSpinner=false
             console.log('guardo la pregunta',res);
             // this.categories = JSON.parse(JSON.stringify(res)).data;
-            this.presentToast('Haz enviado una respuesta')
+            this.presentToast('Has enviado una respuesta')
             this.preguntasRespuestas()
             this.respuesta=''
          
@@ -167,7 +167,7 @@ console.log('idusuario',this.idUsuario)
             // this.cateSpinner=false
             console.log('guardo la pregunta',res);
             // this.categories = JSON.parse(JSON.stringify(res)).data;
-            this.presentToast('Haz enviado una respuesta')
+            this.presentToast('Has enviado una respuesta')
             this.preguntasRespuestas()
             this.respuesta=''
          

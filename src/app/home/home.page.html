@@ -104,8 +104,8 @@
     <ion-slides [options]="slideOpts" style="margin-bottom: -71px;">
 
       <ion-slide *ngFor="let series of section.cursos">
-        <a (click)="cursosVistos(series.id)" routerLink="/tabs/detailCurso/{{series.id}}">
-        <img class="tamanoImg"  [src]="series && series.url_image==null ? 'assets/img/portada.jpg' : series.url_image">
+        <div >
+        <img (click)="cursosVistos(series.id)" routerLink="/tabs/detailCurso/{{series.id}}" class="tamanoImg"  [src]="series && series.url_image==null ? 'assets/img/portada.jpg' : series.url_image">
         <ion-grid class="claGrid" *ngIf="series && series.tags!='' || series.tags!=null">
           <ion-row>
             <ion-col size="12" class="esteIos" style="text-align: right;" >
@@ -140,7 +140,7 @@
           </ion-row>
         </ion-grid>
         <ion-text class="nombreCurso">{{series.name}}</ion-text>
-        </a>
+      </div>
        
         <!-- <div class="continue" >
  

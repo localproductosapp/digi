@@ -143,7 +143,7 @@ categories(params?){
     });
   }
   return this.http.get(
-    environment.ApiUrl+"api/categories", params,{})
+    environment.ApiUrl+"api/categories", {},params)
     .then(data =>{
       return JSON.parse(data.data);
     })

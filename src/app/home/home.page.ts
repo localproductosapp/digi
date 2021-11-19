@@ -179,6 +179,8 @@ console.log('idusuario',this.idUsuario)
                   this.service.categories({orderBy:'View',sortBy:'asc'})
                       .then(res => {
                         // this.cateSpinner=false
+
+                        console.log('el curso mas visto portada',res)
                         
                          this.cursoMasVisto = JSON.parse(JSON.stringify(res)).data[0].cursos[0];
                          console.log('esta categoria cursos mas vistos',this.cursoMasVisto);

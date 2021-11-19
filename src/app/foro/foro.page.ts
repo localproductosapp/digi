@@ -138,8 +138,11 @@ console.log('idusuario',this.idUsuario)
         enviarRespuesta(idpregunta){
 
           // responder
-      console.log('respues',this.respuesta)
-          this.service.responder({answer:this.respuesta,question_id:idpregunta,user_id:this.idUsuario})
+          let respoesta= (<HTMLInputElement>document.getElementById("respuesta")).value
+       
+          console.log('esta es la respuesta',respoesta)
+      // console.log('respues',this.respuesta)
+          this.service.responder({answer:respoesta,question_id:idpregunta,user_id:this.idUsuario})
           .then(res => {
             // this.cateSpinner=false
             console.log('guardo la pregunta',res);

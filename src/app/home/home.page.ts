@@ -77,18 +77,19 @@ idUsuario
 
 
 // PushNotifications.register();
-
-
-
-  }
-  ionViewWillEnter() {
-    let arreglo=localStorage.getItem('user')
+let arreglo=localStorage.getItem('user')
 
 this.idUsuario=JSON.parse(arreglo).id
 console.log('idusuario',this.idUsuario)
 
     this.getCategories()
     this.cursosMasVistos()
+
+
+
+  }
+  ionViewWillEnter() {
+  
   }
 
 

@@ -62,17 +62,18 @@ export class CursosMasVistosPage implements OnInit {
   
   // PushNotifications.register();
   
+  let arreglo=localStorage.getItem('user')
+
+  this.idUsuario=JSON.parse(arreglo).id
+  console.log('idusuario',this.idUsuario)
+  
+
+  this.getCursos()
+  
   
     }
     ionViewWillEnter() {
 
-      let arreglo=localStorage.getItem('user')
-
-      this.idUsuario=JSON.parse(arreglo).id
-      console.log('idusuario',this.idUsuario)
-      
-  
-      this.getCursos()
     }
   
   

@@ -58,17 +58,17 @@ export class VideosGuardadoPage implements OnInit {
   
   
   // PushNotifications.register();
-  
+  let arreglo=localStorage.getItem('user')
+
+  this.idUsuario=JSON.parse(arreglo).id
+  console.log('idusuario',this.idUsuario)
+
+  this.getCursosGuardados()
   
     }
     ionViewWillEnter() {
 
-      let arreglo=localStorage.getItem('user')
 
-      this.idUsuario=JSON.parse(arreglo).id
-      console.log('idusuario',this.idUsuario)
-  
-      this.getCursosGuardados()
 
     }
   

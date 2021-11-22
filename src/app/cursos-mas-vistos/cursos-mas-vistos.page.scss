@@ -240,13 +240,13 @@ p{
 
   .claGrid{
     position: relative;
-    bottom: 170px !important;
+    bottom: 150px !important;
 }
 
 @media(min-width:425px){
 
     .claGrid{
-        bottom: 170px !important;
+        bottom: 150px !important;
     }
     ion-chip{
         font-size: 11px;
@@ -257,7 +257,7 @@ p{
 @media(max-width:320px){
 
     .claGrid{
-        bottom: 170px !important;
+        bottom: 150px !important;
     }
     ion-chip{
         font-size: 9px;
@@ -267,7 +267,7 @@ p{
 @media(max-width:375px){
 
     .claGrid{
-        bottom: 170px !important;
+        bottom: 150px !important;
     }
     ion-chip{
         font-size: 9px;
@@ -301,3 +301,11 @@ p{
     padding-left: 0;
     padding-right: 0;
   }
+
+  
+
+.tamanoImg {
+    width: 100% !important;
+    height: 135px !important;
+
+}

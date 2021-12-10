@@ -185,6 +185,57 @@ categoriesIndex(param?){
     // );
 }
 
+
+PlayPorPersona(param?){
+
+  // if (params) {
+  //   Object.keys(params).forEach(p => {
+  //     parseParams = parseParams.append(p, params[p]);
+  //   });
+  // }
+  return this.http.post(
+    environment.ApiUrl+"api/addPlayPersona", param,{})
+    .then(data =>{
+      return JSON.parse(data.data);
+    })
+    .catch(error => {
+      this.handleError('stores', [])
+    });
+   
+
+    //   return this.http2.post(
+    // environment.ApiUrl+"api/obtenerTodas",param)
+    // .pipe(
+    //   tap(_ => this.log('response received')),
+    //   catchError(this.handleError('busqueda', []))
+    // );
+}
+
+CursoPorPersona(param?){
+
+  // if (params) {
+  //   Object.keys(params).forEach(p => {
+  //     parseParams = parseParams.append(p, params[p]);
+  //   });
+  // }
+  return this.http.post(
+    environment.ApiUrl+"api/addCursoPersona", param,{})
+    .then(data =>{
+      return JSON.parse(data.data);
+    })
+    .catch(error => {
+      this.handleError('stores', [])
+    });
+   
+
+    //   return this.http2.post(
+    // environment.ApiUrl+"api/obtenerTodas",param)
+    // .pipe(
+    //   tap(_ => this.log('response received')),
+    //   catchError(this.handleError('busqueda', []))
+    // );
+}
+
 obtenerCurso(idCurso){
   let header
   let parseParams = new HttpParams();

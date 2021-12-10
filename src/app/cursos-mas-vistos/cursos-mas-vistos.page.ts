@@ -93,10 +93,10 @@ export class CursosMasVistosPage implements OnInit {
   
   
         getCursos(){
-  this.cateSpinner=true
+  this.spinnerFeatured=true
           this.service.categories({orderBy:'View',sortBy:'asc'})
               .then(res => {
-                this.cateSpinner=false
+                this.spinnerFeatured=false
                 
                 this.categories = JSON.parse(JSON.stringify(res)).data;
 
@@ -117,7 +117,7 @@ export class CursosMasVistosPage implements OnInit {
                 // console.log('esta categoria cursois',this.categories );
              
               }, err => {
-               this.cateSpinner=false
+               this.spinnerFeatured=false
                 console.log(err);
               });
           }
@@ -125,6 +125,7 @@ export class CursosMasVistosPage implements OnInit {
   
           cursosVistos(id){
             this.cateSpinner=true
+            this.CursoPersona(id)
                     this.service.cursosMasVistos(id)
                         .then(res => {
                           // this.cateSpinner=false
@@ -135,6 +136,21 @@ export class CursosMasVistosPage implements OnInit {
                         //  this.cateSpinner=false
                           console.log(err);
                         });
+                    }
+
+                    CursoPersona(id){
+                      // storeGuardados
+                      this.service.CursoPorPersona({idCursoFk:id,idUsuarioFk:this.idUsuario})
+                      .then(res => {
+                        // this.cateSpinner=false
+                        console.log('hizo play',res);
+                        // this.presentToast('Ha guardado el curso!')
+                        // this.categories = JSON.parse(JSON.stringify(res)).data;
+                     
+                      }, err => {
+                      //  this.cateSpinner=false
+                        console.log(err);
+                      });
                     }
 
                     storeGuardado(id){

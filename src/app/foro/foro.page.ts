@@ -37,7 +37,7 @@ precioPorcentajeCosmetic:any=''
 precioPorcentajeDecoration:any=''
 precioPorcentajeFeature:any=''
 productsBook
-cateSpinner=false
+spinnerGeneral=false
 categories
 idUsuario
 respuesta
@@ -105,16 +105,16 @@ console.log('idusuario',this.idUsuario)
 
 
         preguntasRespuestas(){
-          this.cateSpinner=true
+           this.spinnerGeneral=true
                   this.service.getQuestions()
                       .then(res => {
-                        // this.cateSpinner=false
+                         this.spinnerGeneral=false
                         this.preguntas=JSON.parse(JSON.stringify(res)).data
                         console.log('esta anwers',res);
                         // this.categories = JSON.parse(JSON.stringify(res)).data;
                      
                       }, err => {
-                      //  this.cateSpinner=false
+                       this.spinnerGeneral=false
                         console.log(err);
                       });
                   }

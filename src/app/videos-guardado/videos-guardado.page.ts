@@ -89,16 +89,16 @@ export class VideosGuardadoPage implements OnInit {
   
   
         getCursosGuardados(){
-  this.cateSpinner=true
+  this.spinnerFeatured=true
           this.service.getGuardados({idUsuario:this.idUsuario})
               .then(res => {
-                this.cateSpinner=false
+                this.spinnerFeatured=false
                 
                 this.categories = res;
                 console.log('estos son los videos guardados',this.categories );
              
               }, err => {
-               this.cateSpinner=false
+               this.spinnerFeatured=false
                 console.log(err);
               });
           }

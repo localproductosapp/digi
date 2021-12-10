@@ -27,7 +27,7 @@ export class DetailCursosPage implements OnInit {
   curso
  subscripcion
  idUsuario
-
+ spinnerFeatured=false
   
 
   constructor( private navCtrl: NavController,
@@ -67,7 +67,9 @@ export class DetailCursosPage implements OnInit {
    
     }
 
-     reproducir(url,suscripcion){
+     reproducir(url,suscripcion,videoId){
+
+      this.PlayPersona(videoId)
 
       if(suscripcion==1 && this.subscripcion==2){
         this.presentToast('Este video es solo para usuarios Premiun')
@@ -91,15 +93,19 @@ export class DetailCursosPage implements OnInit {
        
 
   getProduct(){
-
+this.spinnerFeatured=true
     this.service.obtenerCurso(this.route.snapshot.paramMap.get('id'))
         .then(res => {
+
+          this.spinnerFeatured=false
           
            this.curso = res;
       
           
 
         }, err => {
+
+          this.spinnerFeatured=false
          
           console.log(err);
         });
@@ -129,6 +135,23 @@ export class DetailCursosPage implements OnInit {
         console.log(err);
       });
     }
+
+    PlayPersona(id){
+      // storeGuardados
+      this.service.PlayPorPersona({idVideoFk:id,idUsuarioFk:this.idUsuario})
+      .then(res => {
+        // this.cateSpinner=false
+        console.log('hizo play',res);
+        // this.presentToast('Ha guardado el curso!')
+        // this.categories = JSON.parse(JSON.stringify(res)).data;
+     
+      }, err => {
+      //  this.cateSpinner=false
+        console.log(err);
+      });
+    }
+
+    
 
     
 

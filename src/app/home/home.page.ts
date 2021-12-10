@@ -42,6 +42,7 @@ precioPorcentajeFeature:any=''
 productsBook
 cateSpinner=false
 categories
+spinnerGeneral=false
 cursoMasVisto
 idUsuario
   productFeatured
@@ -162,21 +163,21 @@ console.log('idusuario',this.idUsuario)
 
 
       getCategories(){
-  this.cateSpinner=true
+  this.spinnerGeneral=true
         this.service.categories()
             .then(res => {
-              this.cateSpinner=false
+              this.spinnerGeneral=false
               console.log('esta categoria cursois',res);
               this.categories = JSON.parse(JSON.stringify(res)).data;
            
             }, err => {
-             this.cateSpinner=false
+             this.spinnerGeneral=false
               console.log(err);
             });
         }
 
         cursosMasVistos(){
-          this.cateSpinner=true
+          // this.cateSpinner=true
                   this.service.categories({orderBy:'View',sortBy:'asc'})
                       .then(res => {
                         // this.cateSpinner=false
@@ -193,7 +194,8 @@ console.log('idusuario',this.idUsuario)
 
 
         cursosVistos(id){
-          this.cateSpinner=true
+          // this.cateSpinner=true
+          this.CursoPersona(id)
                   this.service.cursosMasVistos(id)
                       .then(res => {
                         // this.cateSpinner=false
@@ -205,6 +207,22 @@ console.log('idusuario',this.idUsuario)
                         console.log(err);
                       });
                   }
+
+                  CursoPersona(id){
+                    // storeGuardados
+                    this.service.CursoPorPersona({idCursoFk:id,idUsuarioFk:this.idUsuario})
+                    .then(res => {
+                      // this.cateSpinner=false
+                      console.log('hizo play',res);
+                      // this.presentToast('Ha guardado el curso!')
+                      // this.categories = JSON.parse(JSON.stringify(res)).data;
+                   
+                    }, err => {
+                    //  this.cateSpinner=false
+                      console.log(err);
+                    });
+                  }
+              
 
 
         storeGuardado(id){

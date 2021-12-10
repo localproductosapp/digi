@@ -130,6 +130,7 @@ export class HomeCategoriasPage implements OnInit {
   
           cursosVistos(id){
             this.cateSpinner=true
+            this.CursoPersona(id)
                     this.service.cursosMasVistos(id)
                         .then(res => {
                           // this.cateSpinner=false
@@ -140,6 +141,21 @@ export class HomeCategoriasPage implements OnInit {
                         //  this.cateSpinner=false
                           console.log(err);
                         });
+                    }
+
+                    CursoPersona(id){
+                      // storeGuardados
+                      this.service.CursoPorPersona({idCursoFk:id,idUsuarioFk:this.idUsuario})
+                      .then(res => {
+                        // this.cateSpinner=false
+                        console.log('hizo play',res);
+                        // this.presentToast('Ha guardado el curso!')
+                        // this.categories = JSON.parse(JSON.stringify(res)).data;
+                     
+                      }, err => {
+                      //  this.cateSpinner=false
+                        console.log(err);
+                      });
                     }
 
                     storeGuardado(id){

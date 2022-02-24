@@ -17,31 +17,20 @@ import { Platform } from '@ionic/angular';
 import { Plugins } from '@capacitor/core';
 import * as WebVPPlugin from 'capacitor-video-player';
 
-import { IonRouterOutlet } from '@ionic/angular';
-import { PagomodalPage } from '../pagomodal/pagomodal.page';
-
 const { CapacitorVideoPlayer, Toast } = Plugins;
 
-
-
-
 @Component({
-  selector: 'app-detail-cursos',
-  templateUrl: './detail-cursos.page.html',
-  styleUrls: ['./detail-cursos.page.scss'],
+  selector: 'app-detail-premiun',
+  templateUrl: './detail-premiun.page.html',
+  styleUrls: ['./detail-premiun.page.scss'],
 })
-export class DetailCursosPage implements OnInit {
+export class DetailPremiunPage implements OnInit {
+
   curso
  subscripcion
  idUsuario
  spinnerFeatured=false
- tienePremiun
 
- pre
-
-
- cart
- valorTotal: any=0;
 
  private _videoPlayer: any;
  private _url: string;
@@ -63,7 +52,7 @@ export class DetailCursosPage implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private streamingMedia: StreamingMedia,
-    public modalController: ModalController ,
+
     public toastController: ToastController,
     public modalCtrl: ModalController,
     public platform: Platform) { 
@@ -85,13 +74,12 @@ export class DetailCursosPage implements OnInit {
     }
 
     
-    ionViewWillEnter() {
+     ngAfterViewInit() {
 
       let arreglo=localStorage.getItem('user')
 
       this.subscripcion=JSON.parse(arreglo).subscription_id
       // console.log('idusuario',this.idUsuario)
-      this.sabercurso()
       if(this.platform.is('ios')){
         console.log('es ios')
       }else{
@@ -104,20 +92,10 @@ export class DetailCursosPage implements OnInit {
 
        this.PlayPersona(videoId)
 
-  
-    if(suscripcion==1){
-      if( this.tienePremiun==0){
-        if(suscripcion==1 && this.subscripcion==2){
-          console.log('estee s el tiene premiun',this.tienePremiun)
-          console.log('estee s el subscricion 1 ',suscripcion)
-          console.log('estee s el subscricion 2 ',this.subscripcion)
-           this.presentToast('Este video es solo para usuarios Premium')
-          return;
-        }
-       
-      }
-    }
- 
+      // if(suscripcion==1 && this.subscripcion==2){
+      //   this.presentToast('Este video es solo para usuarios Premiun')
+      //   return;
+      // }
 
       if(this.platform.is('ios')){
         console.log('entre')
@@ -157,10 +135,8 @@ this.spinnerFeatured=true
           this.spinnerFeatured=false
           
            this.curso = res;
-
-           console.log('aqui tengo el detalle del curso',JSON.parse(JSON.stringify(res)).premiun)
       
-          this.pre=JSON.parse(JSON.stringify(res)).premiun
+          
 
         }, err => {
 
@@ -303,20 +279,8 @@ this.spinnerFeatured=true
       this.service.addCarro({idUsuarioFk:this.idUsuario,idCursoFk:idCurso,precioCurso:precio})
       .then(res => {
         // this.cateSpinner=false
-        // console.log('esto retorna el carro',res)
-        if(res){
-          this.gteCart()
-         
-        }
-        
-        // if(JSON.parse(JSON.stringify(res)).message){
-        //   this.presentToast(JSON.parse(JSON.stringify(res)).message)
-        //   return;
-        // }else{
-        //   this.presentToast('Agregado correctamente al carrito')
-        // }
-        // console.log('respuesta del agregar carrito',JSON.parse(JSON.stringify(res)).message);
-         
+        console.log('respuesta del agregar carrito',res);
+         this.presentToast('Agregado correctamente al carrito')
         // this.categories = JSON.parse(JSON.stringify(res)).data;
      
       }, err => {
@@ -325,91 +289,6 @@ this.spinnerFeatured=true
       });
 
     }
-
-    sabercurso(){
-      // 
-
-      
-      this.service.saberPremiun({idUsuarioFk:this.idUsuario,idCursoFk:this.route.snapshot.paramMap.get('id')})
-      .then(res => {
-        // this.cateSpinner=false
-        console.log('respuesta dde si existe  o no ',res);
-
-        this.tienePremiun=res
-        
-        // this.categories = JSON.parse(JSON.stringify(res)).data;
-     
-      }, err => {
-      //  this.cateSpinner=false
-        console.log(err);
-      });
-    }
-
-    async presentModal() {
-      const modal = await this.modalController.create({
-        component: PagomodalPage,
-        componentProps: {
-          'monto': this.valorTotal,
-          'cursos': this.cart
-        },
-  
-      });
-      modal.onDidDismiss()
-        .then((data) => {
-          // console.log('se cerro la puta modal',data)
-          // this.gteCart()
-          this.navCtrl.navigateForward(['/tabs/home'])
-      });
-      return await modal.present();
-  }
-
-  gteCart(){
-
-  
-    this.service.getCartUser({idUsuarioFk:this.idUsuario})
-    .then(res => {
-      // this.cateSpinner=false
-     
-      //  this.presentToast('Agregado correctamente al carrito')
-      // this.categories = JSON.parse(JSON.stringify(res)).data;
-      this.cart=res;
-      let totar=''
-      this.cart.forEach((element,index) => {
-  
-         console.log(element.precioCurso)
-         let text = element.precioCurso;
-          let result = text.replace(",", ".");
-  
-         let precioss:number = parseFloat(result)
-  
-         console.log('precios',result)
-  
-         
-         totar+=precioss.toFixed(2)
-  
-        
-  
-        
-  
-      
-        
-      });
-  
-      this.valorTotal=totar
-      console.log('este es el precio',this.valorTotal)
-
-      if(this.valorTotal==''){
-        this.presentToast('Ya posee este curso') 
-        return;
-      }
-      this.presentModal()
-   
-    }, err => {
-    //  this.cateSpinner=false
-      console.log(err);
-    });
-  
-  }
     
 
 }

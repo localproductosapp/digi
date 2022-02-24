@@ -79,11 +79,18 @@
         </ion-row> -->
         <ion-row>
           <ion-col size="12">
-            <a routerLink="/tabs/forgotpassword"><p class="textLink">¿Has olvidado la contraseña?</p></a>
+            <a routerLink="/forgotpassword"><p class="textLink">¿Has olvidado la contraseña?</p></a>
           </ion-col>
         <ion-col size="12" class="ion-text-center">
           <ion-button  class="btn negroLocal" (click)="login()">Iniciar sesión</ion-button>
         </ion-col>
+        <ion-grid *ngIf="spinner">
+          <ion-row>
+            <ion-col size="12" class="ion-text-center">
+              <ion-spinner *ngIf="spinner" style="color: black;" name="crescent"></ion-spinner>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
         <ion-col size="12">
           <a routerLink="/register"> <p class="textLink">¿No tienes una cuenta? <i class="textLinkBlue">Registrate</i></p></a>
         </ion-col>
@@ -96,13 +103,7 @@
        </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-grid *ngIf="spinner">
-    <ion-row>
-      <ion-col size="12" class="ion-text-center">
-        <ion-spinner *ngIf="spinner" name="crescent"></ion-spinner>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+
   <!-- *ngIf="ver" -->
   <!-- <ion-card >
 

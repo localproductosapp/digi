@@ -89,6 +89,10 @@ const routes: Routes = [
           loadChildren: () => import('../detail-cursos/detail-cursos.module').then( m => m.DetailCursosPageModule)
         },
         {
+          path: 'detailPremiun/:id',
+          loadChildren: () => import('../detail-premiun/detail-premiun.module').then( m => m.DetailPremiunPageModule)
+        },
+        {
           path: 'home-categorias/:id',
           loadChildren: () => import('../home-categorias/home-categorias.module').then( m => m.HomeCategoriasPageModule)
         },
@@ -96,6 +100,15 @@ const routes: Routes = [
           path: 'tag/:tag',
           loadChildren: () => import('../home-categorias/home-categorias.module').then( m => m.HomeCategoriasPageModule)
         },
+          {
+          path: 'cart',
+          loadChildren: () => import('../cart/cart.module').then( m => m.CartPageModule)
+        },
+        {
+          path: 'cursosPremiun',
+          loadChildren: () => import('../cursos-premiun/cursos-premiun.module').then( m => m.CursosPremiunPageModule)
+        },
+
 
       
     ]

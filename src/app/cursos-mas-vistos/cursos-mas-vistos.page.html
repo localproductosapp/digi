@@ -14,7 +14,7 @@
 <ion-header #header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/tabs/home">Volver</ion-back-button>
+      <ion-back-button defaultHref="/home">Volver</ion-back-button>
     </ion-buttons>
     <!-- <ion-title >Cursos mas Vistos</ion-title> -->
     <img class="logo" src="/assets/img/logo.png">
@@ -74,6 +74,8 @@
                         <ion-icon *ngIf="item.tags=='Programa'" name="bulb-outline" color="primary"></ion-icon>
                         <ion-icon *ngIf="item.tags=='Bienvenida'" name="rocket-outline" color="primary"></ion-icon>
                         <ion-icon *ngIf="item.tags=='Muy pronto'" name="time-outline" color="primary"></ion-icon>
+                        <ion-icon *ngIf="item.tags=='Caso real'" name="storefront-outline" color="primary"></ion-icon>
+                        <ion-icon *ngIf="item.tags=='Audio'" name="mic-outline" color="primary"></ion-icon>
                         <ion-label>{{item.tags}}</ion-label>
                       </ion-chip>
                     </ion-col>

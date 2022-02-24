@@ -128,7 +128,7 @@
             
                     <ion-col size="4" *ngFor="let item of categories" style="height: 168px;">
         
-                      <a (click)="cursosVistos(item.id)" routerLink="/tabs/detailCurso/{{item.id}}">
+                      <a (click)="cursosVistos(item.id)" routerLink="/tabs/detailPremiun/{{item.idCurso}}">
                         <img class="tamanoImg"  [src]="item && item.url_image==null ? 'assets/img/portada.jpg' : item.url_image">
                         <ion-grid class="claGrid" *ngIf="item && item.tags!='' || item.tags!=null">
                           <ion-row>

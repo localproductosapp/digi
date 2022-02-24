@@ -12,12 +12,13 @@ import { Platform } from '@ionic/angular';
 import { DomController } from "@ionic/angular";
 
 @Component({
-  selector: 'app-videos-guardado',
-  templateUrl: './videos-guardado.page.html',
-  styleUrls: ['./videos-guardado.page.scss'],
+  selector: 'app-cursos-premiun',
+  templateUrl: './cursos-premiun.page.html',
+  styleUrls: ['./cursos-premiun.page.scss'],
 })
-export class VideosGuardadoPage implements OnInit {
+export class CursosPremiunPage implements OnInit {
 
+  
   params
   cart
   spinnerFeatured=false
@@ -68,7 +69,7 @@ export class VideosGuardadoPage implements OnInit {
     }
     ionViewWillEnter() {
 
-      this.getCursosGuardados()
+      this.getCursosPremiun()
 
     }
   
@@ -88,14 +89,14 @@ export class VideosGuardadoPage implements OnInit {
   
   
   
-        getCursosGuardados(){
+        getCursosPremiun(){
   this.spinnerFeatured=true
-          this.service.getGuardados({idUsuario:this.idUsuario})
+          this.service.getCursoPremiun({idUsuarioFk:this.idUsuario})
               .then(res => {
                 this.spinnerFeatured=false
                 
                 this.categories = res;
-                console.log('estos son los videos guardados',this.categories );
+                console.log('estos son los videos comprados',this.categories );
              
               }, err => {
                this.spinnerFeatured=false
@@ -117,6 +118,5 @@ export class VideosGuardadoPage implements OnInit {
                           console.log(err);
                         });
                     }
-  
 
 }

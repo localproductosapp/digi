@@ -20,6 +20,7 @@ export class ForgotpasswordPage implements OnInit {
   email
   code
   color
+  codego
   userLogin
   Sesion=true
   ver=false
@@ -27,6 +28,7 @@ export class ForgotpasswordPage implements OnInit {
   nombre
   mostrarCampos=false
   correo
+  token
   registro
   constructor(
     private navCtrl: NavController,
@@ -47,55 +49,54 @@ export class ForgotpasswordPage implements OnInit {
     this.menu.open('custom');
   }
 
-  sendcode(){
+
+
+  resetpassword(){
     this.spinner=true
-    this.service.sendcode({email:this.email})
+    console.log('aqui vamos ',this.email)
+    this.service.recuperarPassword({email:this.email})
     .then(res => {
       this.spinner=false
-      console.log('este es la respuesta',res);
-      console.log('este es el status',JSON.parse(JSON.stringify(res)).data.status)
-      console.log('este es el status',JSON.parse(JSON.stringify(res)).message)
-   
-      
 
-      if(JSON.parse(JSON.stringify(res)).data.status==200){
+      console.log('aqui entre en la respuesta del login',res)
+   
+
+      if(JSON.parse(JSON.stringify(res)).codigo==1){
         this.mostrarCampos=true
-        this.color='success'
         this.presentToast(JSON.parse(JSON.stringify(res)).message)
+     
       }else{
-        this.mostrarCampos=false
-        this.color='danger'
         this.presentToast(JSON.parse(JSON.stringify(res)).message)
       }
-    
+
+      
+      // console.log('este es el status',JSON.parse(JSON.stringify(res)).data.status)
+      // console.log('este es el status',JSON.parse(JSON.stringify(res)).message)
+   
+ 
     }, err => {
       this.spinner=false
       console.log(err);
     });
+
   }
 
-  resetpassword(){
+
+  changepassword(){
     this.spinner=true
-    this.service.setpassword({email:this.email,code:this.code,password:this.password})
+    this.service.changePassword({email:this.email,password:this.password,code:this.codego})
     .then(res => {
       this.spinner=false
-      console.log('este es la respuesta',res);
-      console.log('este es el status',JSON.parse(JSON.stringify(res)).data.status)
-      console.log('este es el status',JSON.parse(JSON.stringify(res)).message)
-   
-      
+      console.log('este es la respuesta del cambio',res);
 
-      if(JSON.parse(JSON.stringify(res)).data.status==200){
-        this.mostrarCampos=false
-        this.color='success'
+      if(JSON.parse(JSON.stringify(res)).codigo==1){
         this.presentToast(JSON.parse(JSON.stringify(res)).message)
-        this.navCtrl.navigateRoot('/tabs/profile2');
+        this.navCtrl.navigateRoot('/login');
       }else{
-        this.mostrarCampos=true
-        this.color='danger'
         this.presentToast(JSON.parse(JSON.stringify(res)).message)
       }
-    
+   
+ 
     }, err => {
       this.spinner=false
       console.log(err);

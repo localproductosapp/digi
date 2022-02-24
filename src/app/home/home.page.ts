@@ -169,6 +169,14 @@ console.log('idusuario',this.idUsuario)
               this.spinnerGeneral=false
               console.log('esta categoria cursois',res);
               this.categories = JSON.parse(JSON.stringify(res)).data;
+              if(JSON.parse(JSON.stringify(res)).data.cursos2!=''){
+                this.categories.forEach((elementPrincipal,index) => {
+                  elementPrincipal.cursos2.forEach((elementCursos2,index2) => {
+                    elementPrincipal.cursos.push(elementCursos2)
+                  });
+                });
+              }
+        console.log('arreglo definitivo',this.categories)
            
             }, err => {
              this.spinnerGeneral=false
@@ -231,7 +239,12 @@ console.log('idusuario',this.idUsuario)
           .then(res => {
             // this.cateSpinner=false
             console.log('guardo el video',res);
-            this.presentToast('Ha guardado el curso!')
+            if(res.message){
+              this.presentToast('Ya tiene este curso guardado') 
+            }else{
+              this.presentToast('Ha guardado el curso!')
+            }
+           
             // this.categories = JSON.parse(JSON.stringify(res)).data;
          
           }, err => {

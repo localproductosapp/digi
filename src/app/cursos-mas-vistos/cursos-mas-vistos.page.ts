@@ -159,7 +159,11 @@ export class CursosMasVistosPage implements OnInit {
                       .then(res => {
                         // this.cateSpinner=false
                         console.log('guardo el video',res);
-                        this.presentToast('Ha guardado el curso!')
+                        if(res.message){
+                          this.presentToast('Ya tiene este curso guardado') 
+                        }else{
+                          this.presentToast('Ha guardado el curso!')
+                        }
                         // this.categories = JSON.parse(JSON.stringify(res)).data;
                      
                       }, err => {

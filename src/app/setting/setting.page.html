@@ -20,7 +20,28 @@
   </ion-toolbar>
 </ion-header>
 
+
+
 <ion-content [fullscreen]="true" scrollEvents="true" [appHideHeader]="header" style="top: 76px;">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12 " class="ion-text-center">
+        <p>Seleccione imagen de  perfil</p>
+      </ion-col>
+          <ion-col size="6" >
+            
+            <ion-avatar class="avat mglamra"   (click)="cambiarPerfil('1')">
+              <img src="assets/img/avatar.jpg" [ngClass]="Avatar && Avatar==1 ? 'imagenSelect' : ''">
+            </ion-avatar>
+    </ion-col>
+    <ion-col size="6">
+            <ion-avatar class="avat mglamra" (click)="cambiarPerfil('2')" >
+          <img src="assets/img/astronauta.png" [ngClass]="Avatar && Avatar==2 ? 'imagenSelect' : ''">
+        </ion-avatar>
+    </ion-col>
+    </ion-row>
+  
+  </ion-grid>
   <ion-list>
     <ion-item>
       <ion-label><a routerLink="/tabs/privacypolicy" class="labelList">Política de Privacidad</a></ion-label>

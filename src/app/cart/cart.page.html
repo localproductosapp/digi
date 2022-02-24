@@ -1,0 +1,60 @@
+<ion-header #header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/home">Volver</ion-back-button>
+    </ion-buttons>
+    <img class="logo" src="/assets/img/logo.png">
+    <!-- <ion-row class="ion-justify-content-center ion-text-center">
+      <ion-col size="4" class="ion-text-right">
+        TV Shows
+      </ion-col>
+      <ion-col size="4">
+        Movies
+      </ion-col>
+      <ion-col size="4" tappable (click)="openCategories()" class="ion-text-left">
+        Categories <ion-icon name="caret-down-outline"></ion-icon>
+      </ion-col>
+    </ion-row> -->
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" scrollEvents="true" style="top: 76px;">
+
+  <ion-list>
+    <ion-list-header>
+      Carrito de compras
+    </ion-list-header>
+
+    <ion-item *ngFor="let carro of cart">
+      <ion-avatar slot="start">
+        <img [src]="carro.url_image">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{carro.name}}</h2>
+        <h3 style="color:red">{{carro.precioCurso}} €</h3>
+        <p>{{carro.descripcion}}</p>
+  
+      </ion-label>
+      <ion-buttons slot="end">
+        <ion-button (click)="delete(carro.id)" >
+          <ion-icon name="close-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+ 
+  
+  </ion-list>
+
+  <ion-list>
+    <!-- <ion-list-header><ion-label>PaymentSheet</ion-label></ion-list-header> -->
+    <!-- <ion-button  (click)="presentModal()" style="    width: 100%;" *ngIf="cart!=''">Total a pagar {{valorTotal}} €</ion-button> -->
+   
+  </ion-list>
+
+  <div class="ion-padding">
+    <ion-button expand="block"  (click)="presentModal()" type="button" *ngIf="cart!='' && valorTotal" class="ion-no-margin">Comprar por {{valorTotal}} €</ion-button>
+  </div>
+
+
+</ion-content>

@@ -15,7 +15,8 @@ export const environment = {
   //   appId: "1:211018570882:android:ae5ac04444dbbe1740689b",
   //   measurementId: ""
   // },
-  // ApiUrl:'http://localhost/digitalitzap-backend/backend/'
+  // ApiUrl:'http://localhost/digitalitzap-backend/backend/',
+  ApiStripe:'https://digitalizap.herokuapp.com/',
    ApiUrl:'https://digitalizap.com/backend/backend/public/index.php/'
 };
 

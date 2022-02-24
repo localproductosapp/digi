@@ -14,6 +14,8 @@ import { LoginRouteLogged } from './login-route-guard/login-route-guard';
 import { FirebaseAnalytics } from '@ionic-native/firebase-analytics/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-media/ngx';
+import { Stripe } from '@awesome-cordova-plugins/stripe/ngx';
+
 
 
 
@@ -40,6 +42,8 @@ import {
     FirebaseAnalytics,
     AndroidPermissions,
     StreamingMedia,
+    Stripe
+
     
 
   ],

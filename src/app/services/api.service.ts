@@ -101,12 +101,12 @@ login(data,params?) {
 
 
 
-  // return this.http2.post(
-  //   environment.ApiUrl + "api/auth/login",data)
-  //   .pipe(
-  //     tap(_ => this.log('response received')),
-  //     catchError(this.handleError('signup', []))
-  //   );
+ /* return this.http2.post(
+    environment.ApiUrl + "api/auth/login",data)
+    .pipe(
+      tap(_ => this.log('response received')),
+      catchError(this.handleError('signup', []))
+    );*/
 }
 
 // logout(data,params?) : Observable<any>{
@@ -142,22 +142,22 @@ categories(params?){
       parseParams = parseParams.append(p, params[p]);
     });
   }
-  return this.http.get(
-    environment.ApiUrl+"api/categories", {},params)
-    .then(data =>{
-      return JSON.parse(data.data);
-    })
-    .catch(error => {
-      this.handleError('stores', [])
-    });
+return this.http.get(
+  environment.ApiUrl+"api/categories", {},params)
+  .then(data =>{
+    return JSON.parse(data.data);
+  })
+  .catch(error => {
+    this.handleError('stores', [])
+  });
    
 
-    //   return this.http2.get(
-    // environment.ApiUrl+"api/categories",params)
-    // .pipe(
-    //   tap(_ => this.log('response received')),
-    //   catchError(this.handleError('busqueda', []))
-    // );
+  //  return this.http2.get(
+  //   environment.ApiUrl+"api/categories",params)
+  //   .pipe(
+  //     tap(_ => this.log('response received')),
+  //     catchError(this.handleError('busqueda', []))
+  //   );
 }
 
 categoriesIndex(param?){
@@ -186,6 +186,35 @@ categoriesIndex(param?){
 }
 
 
+updateImgPerfil(param?){
+
+  // if (params) {
+  //   Object.keys(params).forEach(p => {
+  //     parseParams = parseParams.append(p, params[p]);
+  //   });
+  // }
+  return this.http.post(
+    environment.ApiUrl+"api/updateImgPerfil", param,{})
+    .then(data =>{
+      return JSON.parse(data.data);
+    })
+    .catch(error => {
+      this.handleError('stores', [])
+    });
+   
+
+    //   return this.http2.post(
+    // environment.ApiUrl+"api/obtenerTodas",param)
+    // .pipe(
+    //   tap(_ => this.log('response received')),
+    //   catchError(this.handleError('busqueda', []))
+    // );
+}
+
+
+
+
+
 PlayPorPersona(param?){
 
   // if (params) {
@@ -205,6 +234,26 @@ PlayPorPersona(param?){
 
     //   return this.http2.post(
     // environment.ApiUrl+"api/obtenerTodas",param)
+    // .pipe(
+    //   tap(_ => this.log('response received')),
+    //   catchError(this.handleError('busqueda', []))
+    // );
+}
+
+consultarUser(idUser?){
+
+  return this.http.get(
+    environment.ApiUrl+`api/users/${idUser}`, {},{})
+    .then(data =>{
+      return JSON.parse(data.data);
+    })
+    .catch(error => {
+      this.handleError('stores', [])
+    });
+   
+
+    //   return this.http2.get(
+    // environment.ApiUrl+`api/users/${idUser}`,{})
     // .pipe(
     //   tap(_ => this.log('response received')),
     //   catchError(this.handleError('busqueda', []))
@@ -236,18 +285,76 @@ CursoPorPersona(param?){
     // );
 }
 
-obtenerCurso(idCurso){
-  let header
-  let parseParams = new HttpParams();
+recuperarPassword(param){
 
-  return this.http.get(
-    environment.ApiUrl+`api/courses/${idCurso}`, {},{})
+  // if (params) {
+  //   Object.keys(params).forEach(p => {
+  //     parseParams = parseParams.append(p, params[p]);
+  //   });
+  // }
+  let headers = {
+    'Content-Type': 'application/json'
+};
+  return this.http.post(
+    environment.ApiUrl+"api/password/email", param,headers )
+    .then(data =>{
+      // console.log('esta es la maldita data',data)
+      return JSON.parse(data.data);
+    })
+    .catch(error => {
+      this.handleError('stores', [])
+    });
+   
+
+    //   return this.http2.post(
+    // environment.ApiUrl+"api/password/email",param)
+    // .pipe(
+    //   tap(_ => this.log('response received')),
+    //   catchError(this.handleError('busqueda', []))
+    // );
+}
+
+
+changePassword(param?){
+
+  // if (params) {
+  //   Object.keys(params).forEach(p => {
+  //     parseParams = parseParams.append(p, params[p]);
+  //   });
+  // }
+  let headers = {
+    'Content-Type': 'application/json'
+};
+  return this.http.post(
+    environment.ApiUrl+"api/password/reset", param,headers)
     .then(data =>{
       return JSON.parse(data.data);
     })
     .catch(error => {
       this.handleError('stores', [])
     });
+   
+
+    //   return this.http2.post(
+    // environment.ApiUrl+"api/password/reset",param)
+    // .pipe(
+    //   tap(_ => this.log('response received')),
+    //   catchError(this.handleError('busqueda', []))
+    // );
+}
+
+obtenerCurso(idCurso){
+  let header
+  let parseParams = new HttpParams();
+
+return this.http.get(
+  environment.ApiUrl+`api/courses/${idCurso}`, {},{})
+  .then(data =>{
+    return JSON.parse(data.data);
+  })
+  .catch(error => {
+    this.handleError('stores', [])
+  });
    
 
     //   return this.http2.get(
@@ -277,25 +384,25 @@ obtenerCurso(idCurso){
     });
   }
   
-  return this.http.post(
-    environment.ApiUrl+"api/categories/obtenerTodas",data,{})
-    .then(data =>{
-      return JSON.parse(data.data);
-    })
-    .catch(error => {
-      console.log('este  es el error',error)
-      this.handleError('product add', [])
-    });
+return this.http.post(
+  environment.ApiUrl+"api/categories/obtenerTodas",data,{})
+  .then(data =>{
+    return JSON.parse(data.data);
+  })
+  .catch(error => {
+    console.log('este  es el error',error)
+    this.handleError('product add', [])
+  });
 
 
 
 
-    //   return this.http2.post(
-    //     environment.ApiUrl+"api/categories/obtenerTodas",data,{})
-    // .pipe(
-    //   tap(_ => this.log('response received')),
-    //   catchError(this.handleError('signup', []))
-    // );
+  //  return this.http2.post(
+  //       environment.ApiUrl+"api/categories/obtenerTodas",data,{})
+  //   .pipe(
+  //     tap(_ => this.log('response received')),
+  //     catchError(this.handleError('signup', []))
+  //   );
 }
 
 
@@ -525,6 +632,190 @@ preguntar(dato) {
   //     catchError(this.handleError('signup', []))
   //   );
 }
+
+pagar(dato) {
+
+
+
+  // console.log(dato);
+ 
+  return this.http.post(
+    environment.ApiStripe + "pay",dato,{})
+    .then(data =>{
+        // return data
+       return JSON.parse(data.data);
+    })
+    .catch(error => {
+      console.log(error);
+      this.handleError('login', [])
+    });
+
+  // return this.http2.post(
+  //   environment.ApiStripe + "pay",dato)
+  //   .pipe(
+  //     tap(_ => this.log('response received')),
+  //     catchError(this.handleError('signup', []))
+  //   );
+}
+
+addCarro(dato) {
+
+
+
+  // console.log(dato);
+ 
+  return this.http.post(
+    environment.ApiUrl + "api/addCartCurso",dato,{})
+    .then(data =>{
+        // return data
+       return JSON.parse(data.data);
+    })
+    .catch(error => {
+      console.log(error);
+      this.handleError('login', [])
+    });
+
+  // return this.http2.post(
+  //   environment.ApiUrl + "api/addCartCurso",dato)
+  //   .pipe(
+  //     tap(_ => this.log('response received')),
+  //     catchError(this.handleError('signup', []))
+  //   );
+}
+
+
+getCartUser(dato) {
+
+
+
+  // console.log(dato);
+ 
+  return this.http.post(
+    environment.ApiUrl + "api/getCartUser",dato,{})
+    .then(data =>{
+        // return data
+       return JSON.parse(data.data);
+    })
+    .catch(error => {
+      console.log(error);
+      this.handleError('login', [])
+    });
+
+  // return this.http2.post(
+  //   environment.ApiUrl + "api/getCartUser",dato)
+  //   .pipe(
+  //     tap(_ => this.log('response received')),
+  //     catchError(this.handleError('signup', []))
+  //   );
+}
+
+deleteCartUser(dato) {
+
+
+
+  // console.log(dato);
+ 
+  return this.http.post(
+    environment.ApiUrl + "api/quitarCarro",dato,{})
+    .then(data =>{
+        // return data
+       return JSON.parse(data.data);
+    })
+    .catch(error => {
+      console.log(error);
+      this.handleError('login', [])
+    });
+
+  // return this.http2.post(
+  //   environment.ApiUrl + "api/quitarCarro",dato)
+  //   .pipe(
+  //     tap(_ => this.log('response received')),
+  //     catchError(this.handleError('signup', []))
+  //   );
+}
+
+
+addCursoPremiun(dato) {
+
+
+
+  // console.log(dato);
+ 
+  return this.http.post(
+    environment.ApiUrl + "api/saveCursosPremiun",dato,{})
+    .then(data =>{
+        // return data
+       return JSON.parse(data.data);
+    })
+    .catch(error => {
+      console.log(error);
+      this.handleError('login', [])
+    });
+
+  // return this.http2.post(
+  //   environment.ApiUrl + "api/saveCursosPremiun",dato)
+  //   .pipe(
+  //     tap(_ => this.log('response received')),
+  //     catchError(this.handleError('signup', []))
+  //   );
+}
+
+getCursoPremiun(dato) {
+
+
+
+  // console.log(dato);
+ 
+  return this.http.post(
+    environment.ApiUrl + "api/getCursosPremiun",dato,{})
+    .then(data =>{
+        // return data
+       return JSON.parse(data.data);
+    })
+    .catch(error => {
+      console.log(error);
+      this.handleError('login', [])
+    });
+
+  // return this.http2.post(
+  //   environment.ApiUrl + "api/getCursosPremiun",dato)
+  //   .pipe(
+  //     tap(_ => this.log('response received')),
+  //     catchError(this.handleError('signup', []))
+  //   );
+}
+
+saberPremiun(dato) {
+
+
+
+  // console.log(dato);
+ 
+  return this.http.post(
+    environment.ApiUrl + "api/saberSiCursoPremiun",dato,{})
+    .then(data =>{
+        // return data
+       return JSON.parse(data.data);
+    })
+    .catch(error => {
+      console.log(error);
+      this.handleError('login', [])
+    });
+
+  // return this.http2.post(
+  //   environment.ApiUrl + "api/saberSiCursoPremiun",dato)
+  //   .pipe(
+  //     tap(_ => this.log('response received')),
+  //     catchError(this.handleError('signup', []))
+  //   );
+}
+// getCursosPremiun
+
+
+
+
+
+
 
 
 }

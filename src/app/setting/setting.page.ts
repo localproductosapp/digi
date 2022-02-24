@@ -28,6 +28,7 @@ export class SettingPage implements OnInit {
   totalArboles
   registro
   idUsuario
+  Avatar
   constructor(
     private navCtrl: NavController,
     private menu: MenuController,
@@ -38,23 +39,19 @@ export class SettingPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    let arreglo=localStorage.getItem('user')
+
+    this.idUsuario=JSON.parse(arreglo).id
+    // this.consoltarUser()
+  }
+
+  ionViewWillEnter() {
+    this.consoltarUser()
   }
 
   cerrarsession(){
    
-    // const removeName = async () => {
-    //   await Storage.remove({ key: 'name' });
-    // };
-
-    // const removeEmail = async () => {
-    //   await Storage.remove({ key: 'email' });
-    // };
-    // const removeRegistro = async () => {
-    //   await Storage.remove({ key: 'registro' });
-    // };
-    // const removeidUser = async () => {
-    //   await Storage.remove({ key: 'idUser' });
-    // };
+   
 
     localStorage.removeItem('user')
 
@@ -62,5 +59,45 @@ export class SettingPage implements OnInit {
     this.router.navigate(['/login']);
 
   }
+
+  cambiarPerfil(valor){
+
+    console.log('este es el id de  usuario',this.idUsuario)
+    console.log('este es el imgperfil',valor)
+
+    this.service.updateImgPerfil({id:this.idUsuario,imgPerfil:valor})
+    .then(res => {
+
+ 
+      console.log('esta es la respuesta',res)
+
+      this.consoltarUser()
+
+    }, err => {
+
+
+     
+      console.log(err);
+    });
+
+  }
+
+  consoltarUser(){
+    this.service.consultarUser(this.idUsuario)
+    .then(res => {
+
+ 
+      console.log('esta es la del usuario',res)
+      this.Avatar=res.imgPerfil
+
+    }, err => {
+
+
+     
+      console.log(err);
+    });
+  }
+
+  // updateImgPerfil
 
 }

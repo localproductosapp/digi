@@ -48,10 +48,10 @@
           </a>
         </ion-col>
         <ion-col size="4" class="ion-tex-center">
-          <div class="btn-vertical">
+          <!-- <div class="btn-vertical">
             <ion-icon name="information-circle-outline"></ion-icon>
             <span>Info</span>
-          </div>
+          </div> -->
         </ion-col>
       </ion-row>
 
@@ -127,6 +127,9 @@
                 <ion-icon *ngIf="series.tags=='Programa'" name="bulb-outline" color="primary"></ion-icon>
                 <ion-icon *ngIf="series.tags=='Bienvenida'" name="rocket-outline" color="primary"></ion-icon>
                 <ion-icon *ngIf="series.tags=='Muy pronto'" name="time-outline" color="primary"></ion-icon>
+                <ion-icon *ngIf="series.tags=='Caso real'" name="storefront-outline" color="primary"></ion-icon>
+                <ion-icon *ngIf="series.tags=='Audio'" name="mic-outline" color="primary"></ion-icon>
+                
                 <!-- <ion-icon name="bulb"></ion-icon> -->
                 <ion-label>{{series.tags}}</ion-label>
               </ion-chip>

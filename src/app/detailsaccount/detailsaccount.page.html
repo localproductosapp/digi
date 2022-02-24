@@ -31,8 +31,8 @@
       <img class="imageBig" src="assets/img/elearning.jpg">
       <ion-card class="cardito">
         <ion-card-header>
-          <ion-avatar class="avat">
-            <img [src]="avatar==null || avatar=='' ? 'assets/img/avatar.jpg' : avatar">
+          <ion-avatar class="avat" *ngIf="AvatarImg">
+            <img [src]="AvatarImg && AvatarImg==1 ? 'assets/img/avatar.jpg' : 'assets/img/astronauta.png'">
           </ion-avatar>
           <!-- <ion-item-divider>
           <ion-card-title >{{store.store_name}}</ion-card-title>
@@ -44,13 +44,15 @@
           <ion-label>
             <!-- <h1 class="txt-Title">¡Hola!</h1> -->
             <h1 class="txt-Title">Hola, {{nombre}}</h1>
-            <p class="txt-center">Plan:{{plan==2 ? 'Freemiun' : 'Premiun'}}</p>
+            <!-- <p class="txt-center">Plan:{{plan==2 ? 'Freemium' : 'Premium'}}</p> -->
           </ion-label>
          
         
 
         </ion-card-content>
       </ion-card>
+  
+      
       <ion-col size="12">
        
         <ion-list > 

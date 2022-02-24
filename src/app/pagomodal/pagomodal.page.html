@@ -1,0 +1,70 @@
+<ion-header #header class="ion-no-border">
+  <ion-toolbar>
+    <!-- <ion-buttons slot="start">
+      
+    </ion-buttons> -->
+    <ion-button (click)=" dismiss();borrarCarro()" style="    --background: transparent;margin-top: -62px;"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
+    <img class="logo" src="/assets/img/logo.png">
+
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" scrollEvents="true" style="top: 76px;">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+
+        <h3>Cantidad total: {{montoTotal}} €</h3>
+
+          <div>
+            <ion-list lines="full" class="ion-no-margin ion-no-padding">
+              <ion-item>
+                <ion-label position="stacked">Nombre <ion-text color="danger">*</ion-text></ion-label>
+                <ion-input required type="text" ></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label position="stacked">Número de tarjeta <ion-text color="danger">*</ion-text></ion-label>
+                <ion-input required type="tel" [(ngModel)]="numeroTarjeta" maxlength="16" ></ion-input>
+              </ion-item>
+       
+
+              <ion-item>
+                <ion-label position="stacked">Mes</ion-label>
+                <ion-input required [(ngModel)]="expMonth" maxlength="2"   placeholder="xx" type="tel"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="stacked">Año</ion-label>
+                <ion-input required [(ngModel)]="expYear" placeholder="xxxx" maxlength="4"  type="tel"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="stacked">CCV</ion-label>
+                <ion-input [(ngModel)]="cvc" required type="number"></ion-input>
+              </ion-item>
+            </ion-list>
+
+            <ion-list>
+              <ion-item class="sinborder">
+                <ion-label>Acepto los términos y condiciones</ion-label>
+                <ion-checkbox slot="end" (click)="valorCheck()" [(ngModel)]="terminos"></ion-checkbox>
+              </ion-item>
+            </ion-list>
+
+            <div class="ion-padding">
+              <ion-button expand="block" [disabled]="spinnerFeatured || !terminos" (click)="pagar()" type="button" class="ion-no-margin">Tramitar pedido</ion-button>
+              <!-- <ion-button expand="block"  (click)="dismiss()" type="button" class="ion-no-margin">Volver</ion-button> -->
+            </div>
+
+            <ion-grid *ngIf="spinnerFeatured">
+              <ion-row>
+                <ion-col size="12" class="ion-text-center">
+                  <ion-spinner *ngIf="spinnerFeatured" name="crescent"></ion-spinner>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>

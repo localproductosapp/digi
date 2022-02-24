@@ -66,10 +66,10 @@ const routes: Routes = [
   //   path: 'productstore',
   //   loadChildren: () => import('./productstore/productstore.module').then( m => m.ProductstorePageModule)
   // },
-  // {
-  //   path: 'forgotpassword',
-  //   loadChildren: () => import('./forgotpassword/forgotpassword.module').then( m => m.ForgotpasswordPageModule)
-  // },
+  {
+    path: 'forgotpassword',
+    loadChildren: () => import('./forgotpassword/forgotpassword.module').then( m => m.ForgotpasswordPageModule)
+  },
   {
     path: 'register',
     loadChildren: () => import('./registeruser/registeruser.module').then( m => m.RegisteruserPageModule)
@@ -85,14 +85,31 @@ const routes: Routes = [
   {
     path: 'foro',
     loadChildren: () => import('./foro/foro.module').then( m => m.ForoPageModule)
-  },  {
+  },
+  {
     path: 'home-categorias',
     loadChildren: () => import('./home-categorias/home-categorias.module').then( m => m.HomeCategoriasPageModule)
   },
   {
     path: 'terminoscondiciones',
     loadChildren: () => import('./terminoscondiciones/terminoscondiciones.module').then( m => m.TerminoscondicionesPageModule)
+  },  {
+    path: 'cart',
+    loadChildren: () => import('./cart/cart.module').then( m => m.CartPageModule)
   },
+  {
+    path: 'pagomodal',
+    loadChildren: () => import('./pagomodal/pagomodal.module').then( m => m.PagomodalPageModule)
+  },
+  {
+    path: 'cursos-premiun',
+    loadChildren: () => import('./cursos-premiun/cursos-premiun.module').then( m => m.CursosPremiunPageModule)
+  },
+  {
+    path: 'detail-premiun',
+    loadChildren: () => import('./detail-premiun/detail-premiun.module').then( m => m.DetailPremiunPageModule)
+  },
+
 
   // {
   //   path: 'drawer',

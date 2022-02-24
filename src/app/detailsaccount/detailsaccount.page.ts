@@ -28,6 +28,7 @@ export class DetailsaccountPage implements OnInit {
   registro
   plan
   avatar
+  AvatarImg
   idUsuario
   constructor(
     private navCtrl: NavController,
@@ -47,6 +48,8 @@ export class DetailsaccountPage implements OnInit {
       this.nombre=JSON.parse(arreglo).names
       this.plan=JSON.parse(arreglo).subscription_id
       this.avatar=JSON.parse(arreglo).avatar
+
+      this.idUsuario=JSON.parse(arreglo).id
       // console.log('arreglo',JSON.parse(arreglo).names)
       //  console.log('nombres',this.nombre)
     }
@@ -56,8 +59,14 @@ export class DetailsaccountPage implements OnInit {
     let rr1 =Storage.get({ key: 'registro' })
 
  this.getObject()
+
+
       
     // }
+  }
+
+  ionViewWillEnter() {
+    this.consoltarUser()
   }
 
   openMenu(){
@@ -140,10 +149,27 @@ export class DetailsaccountPage implements OnInit {
     this.nombre=user.name
     this.correo=user2.name
     this.registro=user3.name
-    this.idUsuario=user4.name
+    // this.idUsuario=user4.name
 
   
     
+  }
+
+
+  consoltarUser(){
+    this.service.consultarUser(this.idUsuario)
+    .then(res => {
+
+ 
+      console.log('esta es la del usuario',res)
+      this.AvatarImg=res.imgPerfil
+
+    }, err => {
+
+
+     
+      console.log(err);
+    });
   }
 
 

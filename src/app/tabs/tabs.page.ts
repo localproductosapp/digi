@@ -12,6 +12,7 @@ import { DrawerService } from '../services/drawer.service';
 export class TabsPage {
   @ViewChild(IonTabs) tabs: IonTabs;
   selected = '';
+  subscripcion
 
     @ViewChild(DrawerComponent) drawer: DrawerComponent;
   backdropVisible = false;
@@ -21,6 +22,10 @@ export class TabsPage {
       if (drawerData && drawerData.open) {
         this.drawer.openDrawer(drawerData.title);
       }
+
+      let arreglo=localStorage.getItem('user')
+
+      this.subscripcion=JSON.parse(arreglo).subscription_id
     });
   }
 

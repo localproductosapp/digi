@@ -78,7 +78,14 @@ export class PagomodalPage implements OnInit {
       console.log('este es el toke',token.id)
         if(token.id){
 
-          this.service.pagar({token:token.id,amount:this.montoTotal})
+        
+          let numerito =this.montoTotal.toString()
+          console.log('este es el monto a  pagar',numerito)
+          let result = numerito.replace(".", "");
+
+          console.log('este es el monto que va a viajar',result)
+
+          this.service.pagar({token:token.id,amount:result})
                         .then(res => {
                           // this.cateSpinner=false
                           console.log('esta es la respuesta del pago',res);

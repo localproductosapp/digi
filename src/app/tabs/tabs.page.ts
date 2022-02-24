@@ -23,10 +23,17 @@ export class TabsPage {
         this.drawer.openDrawer(drawerData.title);
       }
 
-      let arreglo=localStorage.getItem('user')
-
-      this.subscripcion=JSON.parse(arreglo).subscription_id
     });
+  }
+
+  ionViewWillEnter() {
+    
+    let arreglo=localStorage.getItem('user')
+
+    
+
+    this.subscripcion=JSON.parse(arreglo).subscription_id
+    console.log('esta es la subscricion',this.subscripcion)
   }
 
   setSelectedTab() {

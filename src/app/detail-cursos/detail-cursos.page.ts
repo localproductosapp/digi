@@ -1,4 +1,4 @@
-import { Component, OnInit,AfterViewInit } from '@angular/core';
+import { Component, OnInit,AfterViewInit,ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 // import { LocalNotificationActionType } from '@capacitor/core';
 import { NavParams,LoadingController,NavController, AlertController } from '@ionic/angular';
@@ -22,8 +22,10 @@ import { PagomodalPage } from '../pagomodal/pagomodal.page';
 
 const { CapacitorVideoPlayer, Toast } = Plugins;
 
+import { InAppPurchase2, IAPProduct } from '@ionic-native/in-app-purchase-2/ngx';
 
 
+const PRODUCT_PRO_KEY = 'curso';
 
 @Component({
   selector: 'app-detail-cursos',
@@ -36,7 +38,7 @@ export class DetailCursosPage implements OnInit {
  idUsuario
  spinnerFeatured=false
  tienePremiun
-
+ products
  pre
 
 
@@ -55,6 +57,7 @@ export class DetailCursosPage implements OnInit {
  private _apiTimer2: any;
  private _apiTimer3: any;
  private _testApi: boolean = true;
+
   
 
   constructor( private navCtrl: NavController,
@@ -66,9 +69,84 @@ export class DetailCursosPage implements OnInit {
     public modalController: ModalController ,
     public toastController: ToastController,
     public modalCtrl: ModalController,
+    private store: InAppPurchase2,
+    private ref: ChangeDetectorRef,
+    private alertController: AlertController,
     public platform: Platform) { 
 
+      this.platform.ready().then(() => {
+        // Only for debugging!
+        this.store.verbosity = this.store.DEBUG;
+   
+        this.registerProducts();
+        this.setupListeners();
+        
+        // Get the real product information
+        this.store.ready(() => {
+          this.products = this.curso;
+          this.ref.detectChanges();
+        });
+      });
+
     }
+
+    registerProducts() {
+
+      this.store.register({
+        id: PRODUCT_PRO_KEY,
+        type: this.store.NON_CONSUMABLE,
+      });
+   
+      this.store.refresh();
+    }
+
+    setupListeners() {
+      // General query to all products
+      this.store.when('product')
+        .approved((p: IAPProduct) => {
+          // Handle the product deliverable
+          if (p.id === PRODUCT_PRO_KEY) {
+            console.log('compro');
+          } 
+          this.ref.detectChanges();
+   
+          return p.verify();
+        })
+        .verified((p: IAPProduct) => p.finish());
+   
+   
+      // Specific query for one ID
+      this.store.when(PRODUCT_PRO_KEY).owned((p: IAPProduct) => {
+        console.log('compro el curso',p)
+      });
+    }
+
+    purchase(product: IAPProduct) {
+      this.store.order(product).then(p => {
+        // Purchase in progress!
+        console.log('esto retorna',p)
+      }, e => {
+        this.presentAlert('Failed', `Failed to purchase: ${e}`);
+      });
+    }
+   
+    // To comply with AppStore rules
+    restore() {
+      this.store.refresh();
+    }
+
+    async presentAlert(header, message) {
+      const alert = await this.alertController.create({
+        header,
+        message,
+        buttons: ['OK']
+      });
+   
+      await alert.present();
+    }
+   
+
+   
 
     
       ngOnInit() {

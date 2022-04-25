@@ -16,6 +16,7 @@ import { ModalController } from '@ionic/angular';
 import { Platform } from '@ionic/angular';
 import { Plugins } from '@capacitor/core';
 import * as WebVPPlugin from 'capacitor-video-player';
+import * as PluginsLibrary from 'capacitor-video-player';
 
 const { CapacitorVideoPlayer, Toast } = Plugins;
 
@@ -88,40 +89,42 @@ export class DetailPremiunPage implements OnInit {
    
     }
 
-     reproducir(url,suscripcion,videoId){
+    reproducir(url,suscripcion,videoId){
 
-       this.PlayPersona(videoId)
+      this.PlayPersona(videoId)
 
-      // if(suscripcion==1 && this.subscripcion==2){
-      //   this.presentToast('Este video es solo para usuarios Premiun')
-      //   return;
-      // }
+ 
 
-      if(this.platform.is('ios')){
-        console.log('entre')
-        let options: StreamingVideoOptions = {
-         successCallback: () => { console.log('Video played') },
-         errorCallback: (e) => { console.log('Error streaming',e) },
-         orientation: 'landscape',
-         shouldAutoClose: false,
-         controls: true
-         };
-       this.streamingMedia.playVideo(url, options);
 
-      // this.videoPlayer.play(url)
-  
+     if(this.platform.is('ios')){
+       console.log('entre')
+       let options: StreamingVideoOptions = {
+        successCallback: () => { console.log('Video played') },
+        errorCallback: (e) => { console.log('Error streaming',e) },
+        orientation: 'landscape',
+        shouldAutoClose: false,
+        controls: true
+        };
+      this.streamingMedia.playVideo(url, options);
+
+     // this.videoPlayer.play(url)
+ 
+    
+
+     }else if(this.platform.is('android')){
+       
+       // Playing a video.
+       this._videoPlayer.initPlayer({mode:"fullscreen",url:url,playerId:"fullscreen",componentTag:"app-detail-premiun",subtitle:null,language:null,subtitleOption:null})
+       
+     }else{
+       this._videoPlayer = PluginsLibrary.CapacitorVideoPlayer
+       this._videoPlayer.initPlayer({mode:"fullscreen",url:url,playerId:"fullscreen",componentTag:"app-detail-premiun",subtitle:null,language:null,subtitleOption:null})
+     }
      
+ 
+     
+   }
 
-      }else{
-
-        // Playing a video.
-        this._videoPlayer.initPlayer({mode:"fullscreen",url:url,playerId:"fullscreen",componentTag:"app-detail-cursos",subtitle:null,language:null,subtitleOption:null})
-        
-      }
-      
-  
-      
-    }
 
 
   
@@ -130,7 +133,7 @@ export class DetailPremiunPage implements OnInit {
   getProduct(){
 this.spinnerFeatured=true
     this.service.obtenerCurso(this.route.snapshot.paramMap.get('id'))
-        .then(res => {
+        .subscribe(res => {
 
           this.spinnerFeatured=false
           
@@ -159,10 +162,10 @@ this.spinnerFeatured=true
     storeGuardado(id){
       // storeGuardados
       this.service.storeGuardados({idVideo:id,idUsuario:this.idUsuario})
-      .then(res => {
+      .subscribe(res => {
         // this.cateSpinner=false
         console.log('guardo el video',res);
-        if(res.message){
+        if(JSON.parse(JSON.stringify(res)).message){
           this.presentToast('Ya tiene este curso guardado') 
         }else{
           this.presentToast('Ha guardado el curso!')
@@ -178,7 +181,7 @@ this.spinnerFeatured=true
     PlayPersona(id){
       // storeGuardados
       this.service.PlayPorPersona({idVideoFk:id,idUsuarioFk:this.idUsuario})
-      .then(res => {
+      .subscribe(res => {
         // this.cateSpinner=false
         console.log('hizo play',res);
         // this.presentToast('Ha guardado el curso!')
@@ -277,7 +280,7 @@ this.spinnerFeatured=true
 
 
       this.service.addCarro({idUsuarioFk:this.idUsuario,idCursoFk:idCurso,precioCurso:precio})
-      .then(res => {
+      .subscribe(res => {
         // this.cateSpinner=false
         console.log('respuesta del agregar carrito',res);
          this.presentToast('Agregado correctamente al carrito')

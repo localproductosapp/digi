@@ -36,7 +36,7 @@
 
   <!-- [style.background-image]="'url(assets/img/lerning.jpg)'" -->
 
-  <div class="spotlight" *ngIf="curso && curso.portada2!=null" style="background-image: url({{curso.portada2}})"  >
+  <div class="spotlight" *ngIf="curso && curso.portada2!=null" style="background-image: url({{curso.portada2}});width: 100%;"  >
     <!-- <div class="spotlight" *ngIf="curso && curso.url_image==''" style="background-image: url(assets/img/lerning.jpg)"  > -->
     <div class="gradient" ></div>
     
@@ -84,7 +84,7 @@
   </div>
   <div id="fullscreen" slot="fixed"></div>
   <!-- <div class="spotlight" *ngIf="curso && curso.url_image!=''" style="background-image: url({{curso.url_image}})"  > -->
-    <div class="spotlight" *ngIf="curso && curso.portada2==null" style="background-image: url(assets/img/lerning.jpg)"  >
+    <div class="spotlight" *ngIf="curso && curso.portada2==null" style="background-image: url(assets/img/lerning.jpg);width: 100%;"  >
     <div class="gradient" ></div>
     
     <div class="info" *ngIf="curso">
@@ -155,7 +155,7 @@
     </ion-grid>
    
     <ion-row *ngIf="curso">
-      <ion-card *ngFor="let video of curso.videos" style="border-radius: 10px;">
+      <ion-card *ngFor="let video of curso.videos" style="border-radius: 10px;margin-left: auto;margin-right: auto">
         <a (click)="reproducir(video.url,video.suscription_id,video.id)">
           <img [src]="video.url_image==null || video.url_image=='' ? 'assets/img/portada_vacia.jpg' : video.url_image" />
         </a>

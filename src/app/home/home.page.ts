@@ -18,6 +18,9 @@ import { DrawerService } from '../services/drawer.service';
 import { modalEnterAnimation, modalLeaveAnimation } from '../modal-animation';
 import { HideHeaderDirective } from '../directives/hide-header.directive';
 
+import { Plugins } from '@capacitor/core';
+const { FacebookAnalytics } = Plugins;
+
 // const { PushNotifications } = Plugins;
 
 @Component({
@@ -165,7 +168,7 @@ console.log('idusuario',this.idUsuario)
       getCategories(){
   this.spinnerGeneral=true
         this.service.categories()
-            .then(res => {
+            .subscribe(res => {
               this.spinnerGeneral=false
               console.log('esta categoria cursois',res);
               this.categories = JSON.parse(JSON.stringify(res)).data;
@@ -187,7 +190,7 @@ console.log('idusuario',this.idUsuario)
         cursosMasVistos(){
           // this.cateSpinner=true
                   this.service.categories({orderBy:'View',sortBy:'asc'})
-                      .then(res => {
+                      .subscribe(res => {
                         // this.cateSpinner=false
 
                         console.log('el curso mas visto portada',res)
@@ -205,7 +208,7 @@ console.log('idusuario',this.idUsuario)
           // this.cateSpinner=true
           this.CursoPersona(id)
                   this.service.cursosMasVistos(id)
-                      .then(res => {
+                      .subscribe(res => {
                         // this.cateSpinner=false
                         console.log('esta categoria cursos mas vistos',res);
                         // this.categories = JSON.parse(JSON.stringify(res)).data;
@@ -219,7 +222,7 @@ console.log('idusuario',this.idUsuario)
                   CursoPersona(id){
                     // storeGuardados
                     this.service.CursoPorPersona({idCursoFk:id,idUsuarioFk:this.idUsuario})
-                    .then(res => {
+                    .subscribe(res => {
                       // this.cateSpinner=false
                       console.log('hizo play',res);
                       // this.presentToast('Ha guardado el curso!')
@@ -233,13 +236,14 @@ console.log('idusuario',this.idUsuario)
               
 
 
-        storeGuardado(id){
+        async storeGuardado(id){
+          await FacebookAnalytics.logEvent({ event: 'Guardo el curso'+id });
           // storeGuardados
           this.service.storeGuardados({idVideo:id,idUsuario:this.idUsuario})
-          .then(res => {
+          .subscribe(res => {
             // this.cateSpinner=false
             console.log('guardo el video',res);
-            if(res.message){
+            if(JSON.parse(JSON.stringify(res)).message){
               this.presentToast('Ya tiene este curso guardado') 
             }else{
               this.presentToast('Ha guardado el curso!')

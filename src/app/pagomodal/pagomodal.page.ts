@@ -1,11 +1,17 @@
 import { Component, Input, OnInit } from '@angular/core';
 // import { NavParams } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
-import { Stripe } from '@awesome-cordova-plugins/stripe/ngx';
+// import { Stripe } from '@awesome-cordova-plugins/stripe/ngx';
 import { ApiService } from '../services/api.service';
 import { ToastController } from '@ionic/angular';
 import { NavParams,LoadingController,NavController, AlertController } from '@ionic/angular';
 
+// import { Stripe } from '@capacitor-community/stripe';
+// import { Plugins } from '@capacitor/core';
+
+// const { Stripe } = Plugins;
+import '@stripe/stripe-js';
+declare var Stripe;
 
 @Component({
   selector: 'app-pagomodal',
@@ -34,10 +40,10 @@ export class PagomodalPage implements OnInit {
     terminos=false
 
     spinnerFeatured=false
-
+    stripe = Stripe('pk_test_51K7hlpGPfZahrmfPjpVX1KxmRtWqr3UNiqov7pO0sswLMoXRJhsceulNSjacflHABhjT5CfABaZbiCs7TNpDIpvB003866cfYb');
 
   constructor(navParams: NavParams,
-    private stripe: Stripe,
+    // private stripe: Stripe,
     private service: ApiService,
     public modalController: ModalController ,
     public toastController: ToastController,
@@ -51,6 +57,8 @@ export class PagomodalPage implements OnInit {
     let arreglo=localStorage.getItem('user')
 
     this.idUsuario=JSON.parse(arreglo).id
+
+    let elements = this.stripe.elements();
     
   }
 
@@ -63,20 +71,20 @@ export class PagomodalPage implements OnInit {
 
   async pagar(){
     this.spinnerFeatured=true
-    this.stripe.setPublishableKey('pk_test_51K7hlpGPfZahrmfPjpVX1KxmRtWqr3UNiqov7pO0sswLMoXRJhsceulNSjacflHABhjT5CfABaZbiCs7TNpDIpvB003866cfYb');
+    // Stripe.setPublishableKey('pk_test_51K7hlpGPfZahrmfPjpVX1KxmRtWqr3UNiqov7pO0sswLMoXRJhsceulNSjacflHABhjT5CfABaZbiCs7TNpDIpvB003866cfYb');
   
   let card = {
    number: this.numeroTarjeta,
-   expMonth: this.expMonth,
-   expYear: this.expYear,
+   exp_month: this.expMonth,
+   exp_year: this.expYear,
    cvc: this.cvc
   }
   
-  this.stripe.createCardToken(card)
-     .then(token => {
+  // this.stripe.createCardToken(card)
+  //    .then(token => {
 
-      console.log('este es el toke',token.id)
-        if(token.id){
+      // console.log('este es el toke',token.id)
+        // if(token.id){
 
         
           let numerito =this.montoTotal.toString()
@@ -85,8 +93,8 @@ export class PagomodalPage implements OnInit {
 
           console.log('este es el monto que va a viajar',result)
 
-          this.service.pagar({token:token.id,amount:result})
-                        .then(res => {
+          this.service.pagar({token:0,amount:result,card:card})
+                        .subscribe(res => {
                           // this.cateSpinner=false
                           console.log('esta es la respuesta del pago',res);
 
@@ -131,14 +139,14 @@ export class PagomodalPage implements OnInit {
                         });
 
 
-        }
+        // }
 
-     }
+    //  }
  
 
-     )
+    //  )
 
-     .catch(error => console.error(error));
+    //  .catch(error => console.error(error));
     }
 
 
@@ -156,12 +164,12 @@ export class PagomodalPage implements OnInit {
 
     AgregarCurso(dato){
       this.service.addCursoPremiun(dato)
-      .then(res => {
+      .subscribe(res => {
         // this.cateSpinner=false
         console.log('respuesta del agrego cursos',res);
     
 
-        this.service.deleteCartUser({id:dato.id}).then(res => {
+        this.service.deleteCartUser({id:dato.id}).subscribe(res => {
           // this.cateSpinner=false
           console.log('respuesta del borro',res);
       
@@ -183,7 +191,7 @@ export class PagomodalPage implements OnInit {
         // this.AgregarCurso({idCursoFk:element.idCursoFk,idUsuarioFk:this.idUsuario,id:element.id})
 
 
-        this.service.deleteCartUser({id:element.id}).then(res => {
+        this.service.deleteCartUser({id:element.id}).subscribe(res => {
           // this.cateSpinner=false
           console.log('respuesta del borro',res);
       
@@ -209,7 +217,7 @@ export class PagomodalPage implements OnInit {
 
   
       this.service.getCartUser({idUsuarioFk:this.idUsuario})
-      .then(res => {
+      .subscribe(res => {
         // this.cateSpinner=false
         console.log('respuesta del get carrito',res);
         //  this.presentToast('Agregado correctamente al carrito')

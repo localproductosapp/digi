@@ -17,7 +17,7 @@ export const environment = {
   // },
   // ApiUrl:'http://localhost/digitalitzap-backend/backend/',
   ApiStripe:'https://digitalizap.herokuapp.com/',
-   ApiUrl:'https://digitalizap.com/backend/backend/public/index.php/'
+    ApiUrl:'https://digitalizap.com/backend/backend/public/index.php/'
 };
 
 /*

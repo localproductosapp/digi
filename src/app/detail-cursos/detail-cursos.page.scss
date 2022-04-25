@@ -314,3 +314,55 @@
   ion-fab-button{
     --background:#00cdd0 !important;
   }
+
+  .cajaSelect{
+    background: #262626;
+    padding: 8px;
+  
+  }
+
+  .alert-wrapper {
+    color: red;
+  }
+
+.sc-ion-alert-md .alert-radio-icon.sc-ion-alert-md {
+    border-color: #ae0000;
+}
+
+.alert-radio-inner {
+  background: red !important;
+}
+
+
+.alert-radio-inner.sc-ion-alert-md {
+ 
+  background-color: #ae0000;
+}
+
+ion-select {
+  /* Applies to the value and placeholder color */
+  color: #ae0000;
+
+  /* Set a different placeholder color */
+  --placeholder-color: #ae0000;
+
+  /* Set full opacity on the placeholder */
+  --placeholder-opacity: 1;
+}
+
+
+.alert-radio-inner.sc-ion-alert-md {
+  left: 3px;
+  top: 3px;
+  border-radius: 50%;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  -webkit-transform: scale3d(0, 0, 0);
+  transform: scale3d(0, 0, 0);
+  -webkit-transition: -webkit-transform 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: -webkit-transform 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 280ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: white !important;
+}

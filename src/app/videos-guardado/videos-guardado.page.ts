@@ -91,7 +91,7 @@ export class VideosGuardadoPage implements OnInit {
         getCursosGuardados(){
   this.spinnerFeatured=true
           this.service.getGuardados({idUsuario:this.idUsuario})
-              .then(res => {
+              .subscribe(res => {
                 this.spinnerFeatured=false
                 
                 this.categories = res;
@@ -107,7 +107,7 @@ export class VideosGuardadoPage implements OnInit {
           cursosVistos(id){
             this.cateSpinner=true
                     this.service.cursosMasVistos(id)
-                        .then(res => {
+                        .subscribe(res => {
                           // this.cateSpinner=false
                           console.log('esta categoria cursois',res);
                           // this.categories = JSON.parse(JSON.stringify(res)).data;

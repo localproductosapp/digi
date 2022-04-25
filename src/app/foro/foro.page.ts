@@ -107,7 +107,7 @@ console.log('idusuario',this.idUsuario)
         preguntasRespuestas(){
            this.spinnerGeneral=true
                   this.service.getQuestions()
-                      .then(res => {
+                      .subscribe(res => {
                          this.spinnerGeneral=false
                         this.preguntas=JSON.parse(JSON.stringify(res)).data
                         console.log('esta anwers',res);
@@ -123,7 +123,7 @@ console.log('idusuario',this.idUsuario)
         storeGuardado(id){
           // storeGuardados
           this.service.storeGuardados({idVideo:id,idUsuario:this.idUsuario})
-          .then(res => {
+          .subscribe(res => {
             // this.cateSpinner=false
             console.log('guardo el video',res);
             // this.categories = JSON.parse(JSON.stringify(res)).data;
@@ -143,7 +143,7 @@ console.log('idusuario',this.idUsuario)
           console.log('esta es la respuesta',respoesta)
       // console.log('respues',this.respuesta)
           this.service.responder({answer:respoesta,question_id:idpregunta,user_id:this.idUsuario})
-          .then(res => {
+          .subscribe(res => {
             // this.cateSpinner=false
             console.log('guardo la respoesta',res);
             // this.categories = JSON.parse(JSON.stringify(res)).data;
@@ -163,7 +163,7 @@ console.log('idusuario',this.idUsuario)
           // responder
       console.log('respues',this.respuesta)
           this.service.preguntar({question:this.preguntar,user_id:this.idUsuario})
-          .then(res => {
+          .subscribe(res => {
             // this.cateSpinner=false
             console.log('guardo la pregunta',res);
             // this.categories = JSON.parse(JSON.stringify(res)).data;

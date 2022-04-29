@@ -3,11 +3,11 @@ import { environment } from './../../environments/environment';
 import { Router, RouterEvent, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
-import { FirebaseAnalytics } from '@ionic-native/firebase-analytics/ngx';
+//import { FirebaseAnalytics } from '@ionic-native/firebase-analytics/ngx';
  
 // Init for the web
-// import "@capacitor-community/firebase-analytics";
-//  import { FirebaseAnalytics } from "@capacitor-community/firebase-analytics";
+ import "@capacitor-community/firebase-analytics";
+ import { FirebaseAnalytics } from "@capacitor-community/firebase-analytics";
 import { Plugins } from "@capacitor/core";
 const { Device } = Plugins;
  
@@ -17,10 +17,10 @@ const { Device } = Plugins;
 export class AnalyticsService {
   analyticsEnabled = true;
  
-  constructor( private router: Router,private firebaseAnalytics: FirebaseAnalytics) {
+  constructor( private router: Router) {
 
     //  this.initFb();
-    this.datos()
+    // this.datos()
     this.router.events.pipe(
       filter((e: RouterEvent) => e instanceof NavigationEnd),
     ).subscribe((e: RouterEvent) => {
@@ -65,38 +65,38 @@ export class AnalyticsService {
 // this.firebaseAnalytics.logEvent("buscador", {buscador: "value1"});
 //     this.firebaseAnalytics.setUserProperty("name1", "value1");
 
-    this.firebaseAnalytics.logEvent('buscador', {page: valor})
-    .then((res: any) => console.log('este es el buscador',res))
-    .catch((error: any) => console.error(error));
+    // this.FirebaseAnalytics.logEvent('buscador', {page: valor})
+    // .then((res: any) => console.log('este es el buscador',res))
+    // .catch((error: any) => console.error(error));
     
-    this.firebaseAnalytics.logEvent('buscador',{
-      name: "buscador",
-      params: {
-        method: 'parametro'
-      }
-    })  .then(() => console.log('si se traqueo'))
-    .catch(err => console.log('Error event:', err));
+    // this.FirebaseAnalytics.logEvent('buscador',{
+    //   name: "buscador",
+    //   params: {
+    //     method: 'parametro'
+    //   }
+    // })  .then(() => console.log('si se traqueo'))
+    // .catch(err => console.log('Error event:', err));
   }
  
   setScreenName(screenName) {
     
-    // FirebaseAnalytics.setScreenName({
-    //   screenName,
-    //   nameOverride
-    // });
-    this.firebaseAnalytics.setCurrentScreen(screenName).then((res: any) => console.log('esta es  la apgina guardada',res))
-    .catch((error: any) => console.error(error));
+    FirebaseAnalytics.setScreenName({
+      screenName,
+      // nameOverride
+    });
+    // FirebaseAnalytics.setCurrentScreen(screenName).then((res: any) => console.log('esta es  la apgina guardada',res))
+    // .catch((error: any) => console.error(error));
   }
 
-  datos(){
-    this.firebaseAnalytics.setEnabled(true);
-  }
- 
-  // toggleAnalytics() {
-  //   this.analyticsEnabled = !this.analyticsEnabled;
-  //   FirebaseAnalytics.setCollectionEnabled({
-  //     enabled: this.analyticsEnabled,
-  //   });    
+  // datos(){
+  //   this.firebaseAnalytics.setEnabled(true);
   // }
+ 
+  toggleAnalytics() {
+    this.analyticsEnabled = !this.analyticsEnabled;
+    FirebaseAnalytics.setCollectionEnabled({
+      enabled: this.analyticsEnabled,
+    });    
+  }
   
 }

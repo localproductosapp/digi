@@ -6,17 +6,17 @@ import { MenuController } from '@ionic/angular';
 import { ApiService } from '../services/api.service';
 import { take } from 'rxjs/operators';
 import { AnalyticsService } from '../services/analytics.service';
-import { FCM } from '@capacitor-community/fcm';
+//import { FCM } from '@capacitor-community/fcm';
 // import { PushNotifications } from '@capacitor/push-notifications';
 
-import {
+/*import {
   Plugins,
   PushNotification,
   PushNotificationToken,
   PushNotificationActionPerformed,
-} from '@capacitor/core';
+} from '@capacitor/core'*/
 
-const { PushNotifications } = Plugins;
+//const { PushNotifications } = Plugins;
 
 import { Platform } from '@ionic/angular';
 

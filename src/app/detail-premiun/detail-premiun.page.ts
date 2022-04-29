@@ -15,7 +15,7 @@ import { ModalController } from '@ionic/angular';
 
 import { Platform } from '@ionic/angular';
 import { Plugins } from '@capacitor/core';
-import * as WebVPPlugin from 'capacitor-video-player';
+//import * as WebVPPlugin from 'capacitor-video-player';
 
 const { CapacitorVideoPlayer, Toast } = Plugins;
 
@@ -102,7 +102,7 @@ export class DetailPremiunPage implements OnInit {
         let options: StreamingVideoOptions = {
          successCallback: () => { console.log('Video played') },
          errorCallback: (e) => { console.log('Error streaming',e) },
-         orientation: 'landscape',
+         orientation: 'portrait',
          shouldAutoClose: false,
          controls: true
          };

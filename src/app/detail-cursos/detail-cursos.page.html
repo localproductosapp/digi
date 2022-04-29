@@ -34,7 +34,13 @@
 
   </div> -->
 
-  <!-- [style.background-image]="'url(assets/img/lerning.jpg)'" -->
+  <!-- [style.background-image]="'url(assets/img/lerning.jpg)'" 
+  <div style="background: white;" *ngFor="let producto of products">
+    <div><p style="color: black;">{{producto.price}}</p></div>
+    <ion-button slot="end" (click)="purchase(producto)">
+      {{ producto.price }} {{ producto.currency }}
+    </ion-button>
+  </div>-->
 
   <div class="spotlight" *ngIf="curso && curso.portada2!=null" style="background-image: url({{curso.portada2}})"  >
     <!-- <div class="spotlight" *ngIf="curso && curso.url_image==''" style="background-image: url(assets/img/lerning.jpg)"  > -->
@@ -53,7 +59,7 @@
         </ion-col>
         <ion-col size="3" class="ion-tex-center">
           <!-- <span class="rating">Visto: {{ curso.view }}</span><br> -->
-          <a (click)="purchase(curso)" *ngIf="curso.premiun!=0">
+          <a (click)="purchase(products,curso.id,curso.precio)" *ngIf="curso.premiun!=0">
             <ion-icon name="cart" ></ion-icon><p class="textoti"><b>Comprar</b></p>
           </a> 
       
@@ -99,7 +105,7 @@
         </ion-col>
         <ion-col size="3" class="ion-tex-center">
           <!-- <span class="rating">Visto: {{ curso.view }}</span><br> -->
-          <a (click)="purchase(curso)" *ngIf="curso.premiun!=0">
+          <a (click)="purchase(products,curso.id,curso.precio)" *ngIf="curso.premiun!=0" >
             <ion-icon name="cart" ></ion-icon><p class="textoti"><b>Comprar</b></p>
           </a> 
           <a (click)="storeGuardado(curso.id)">

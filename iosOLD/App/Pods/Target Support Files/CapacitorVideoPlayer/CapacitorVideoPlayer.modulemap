@@ -1,0 +1,6 @@
+framework module CapacitorVideoPlayer {
+  umbrella header "CapacitorVideoPlayer-umbrella.h"
+
+  export *
+  module * { export * }
+}

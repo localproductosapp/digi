@@ -5,7 +5,7 @@ import { HTTP } from '@ionic-native/http/ngx';
 
 import { Plugins } from '@capacitor/core';
 
-import { Stripe } from '@awesome-cordova-plugins/stripe/ngx';
+//import { Stripe } from '@awesome-cordova-plugins/stripe/ngx';
 
 import { first } from 'rxjs/operators';
 import { IonRouterOutlet } from '@ionic/angular';
@@ -37,7 +37,7 @@ export class CartPage implements OnInit {
   constructor(    private http2: HTTP, 
     private http: HttpClient,
     private navCtrl: NavController,
-    private stripe: Stripe,
+    //private stripe: Stripe,
     public routerOutlet: IonRouterOutlet,
     public modalController: ModalController ,
     private service: ApiService,

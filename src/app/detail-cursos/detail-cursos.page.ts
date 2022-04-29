@@ -15,7 +15,7 @@ import { ModalController } from '@ionic/angular';
 
 import { Platform } from '@ionic/angular';
 import { Plugins } from '@capacitor/core';
-import * as WebVPPlugin from 'capacitor-video-player';
+//import * as WebVPPlugin from 'capacitor-video-player';
 
 import { IonRouterOutlet } from '@ionic/angular';
 import { PagomodalPage } from '../pagomodal/pagomodal.page';
@@ -36,13 +36,16 @@ export class DetailCursosPage implements OnInit {
   curso
  subscripcion
  idUsuario
+ idCurso
  spinnerFeatured=false
  tienePremiun
  products
  pre
+ idAPPLE
 
 
  cart
+ precioCurso
  valorTotal: any=0;
 
  private _videoPlayer: any;
@@ -77,13 +80,44 @@ export class DetailCursosPage implements OnInit {
       this.platform.ready().then(() => {
         // Only for debugging!
         this.store.verbosity = this.store.DEBUG;
+
+
+ // Register event handlers for the specific product
+ /*this.store.when("curso").registered( (product: IAPProduct) => {
+   console.log('Registered: ' + JSON.stringify(product));
+ });*/
+
+
+
+
+
+ // Track all store errors
+ /*this.store.error( (err) => {
+   console.error('Store Error ' + JSON.stringify(err));
+ });*/
+
+ // Run some code only when the store is ready to be used
+ /*this.store.ready(() =>  {
+   console.log('Store is ready');
+   console.log('Products: ' + JSON.stringify(this.store.products));
+   console.log(JSON.stringify(this.store.get("curso")));
+ });*/
+
+this.registerProducts();
+      this.setupListeners();
+ // Refresh the status of in-app products
+ //this.store.refresh();
    
-        this.registerProducts();
-        this.setupListeners();
+        /*this.registerProducts();
+        this.setupListeners();*/
         
         // Get the real product information
+        console.log('este producto tienda')
         this.store.ready(() => {
-          this.products = this.curso;
+          /*console.log('aqui cargo la tienda')
+          this.store.get()
+          this.products = this.store.products;
+          console.log('productosss',this.products)*/
           this.ref.detectChanges();
         });
       });
@@ -96,6 +130,11 @@ export class DetailCursosPage implements OnInit {
         id: PRODUCT_PRO_KEY,
         type: this.store.NON_CONSUMABLE,
       });
+    
+      this.store.register({
+       id: "tiendapro",
+       type: this.store.NON_RENEWING_SUBSCRIPTION,
+     });
    
       this.store.refresh();
     }
@@ -105,9 +144,9 @@ export class DetailCursosPage implements OnInit {
       this.store.when('product')
         .approved((p: IAPProduct) => {
           // Handle the product deliverable
-          if (p.id === PRODUCT_PRO_KEY) {
-            console.log('compro');
-          } 
+
+            this.Addcart(this.idCurso,this.precioCurso)
+         
           this.ref.detectChanges();
    
           return p.verify();
@@ -121,7 +160,9 @@ export class DetailCursosPage implements OnInit {
       });
     }
 
-    purchase(product: IAPProduct) {
+    purchase(product: IAPProduct,idCurso,precio) {
+      this.precioCurso=precio
+      this.idCurso=idCurso
       this.store.order(product).then(p => {
         // Purchase in progress!
         console.log('esto retorna',p)
@@ -153,7 +194,8 @@ export class DetailCursosPage implements OnInit {
       this.getProduct()
       
       let arreglo=localStorage.getItem('user')
-
+      this.subscripcion=JSON.parse(arreglo).subscription_id
+      this.sabercurso()
       this.idUsuario=JSON.parse(arreglo).id
       this._videoPlayer = CapacitorVideoPlayer;
         // define the video url
@@ -168,7 +210,8 @@ export class DetailCursosPage implements OnInit {
       let arreglo=localStorage.getItem('user')
 
       this.subscripcion=JSON.parse(arreglo).subscription_id
-      // console.log('idusuario',this.idUsuario)
+       console.log('idusuario',arreglo)
+       //this.presentAlert('este',arreglo) 
       this.sabercurso()
       if(this.platform.is('ios')){
         console.log('es ios')
@@ -181,6 +224,9 @@ export class DetailCursosPage implements OnInit {
      reproducir(url,suscripcion,videoId){
 
        this.PlayPersona(videoId)
+       console.log('esta es  la subscripcion',suscripcion)
+       console.log('esta es la subscricion del usuario',this.subscripcion)
+       console.log('tiene premiun',this.tienePremiun)
 
   
     if(suscripcion==1){
@@ -198,11 +244,23 @@ export class DetailCursosPage implements OnInit {
  
 
       if(this.platform.is('ios')){
+        if(suscripcion==1){
+          if( this.tienePremiun==0){
+            if(suscripcion==1 && this.subscripcion==2){
+              console.log('estee s el tiene premiun',this.tienePremiun)
+              console.log('estee s el subscricion 1 ',suscripcion)
+              console.log('estee s el subscricion 2 ',this.subscripcion)
+               this.presentToast('Este video es solo para usuarios Premium')
+              return;
+            }
+           
+          }
+        }
         console.log('entre')
         let options: StreamingVideoOptions = {
          successCallback: () => { console.log('Video played') },
          errorCallback: (e) => { console.log('Error streaming',e) },
-         orientation: 'landscape',
+         orientation: 'portrait',
          shouldAutoClose: false,
          controls: true
          };
@@ -235,6 +293,9 @@ this.spinnerFeatured=true
           this.spinnerFeatured=false
           
            this.curso = res;
+           this.idAPPLE= JSON.parse(JSON.stringify(res)).idapple
+
+           this.products = this.store.get(this.idAPPLE)
 
            console.log('aqui tengo el detalle del curso',JSON.parse(JSON.stringify(res)).premiun)
       
@@ -477,10 +538,10 @@ this.spinnerFeatured=true
       console.log('este es el precio',this.valorTotal)
 
       if(this.valorTotal==''){
-        this.presentToast('Ya posee este curso') 
+        //this.presentToast('Ya posee este curso') 
         return;
       }
-      this.presentModal()
+      this.procesarCursos()
    
     }, err => {
     //  this.cateSpinner=false
@@ -488,6 +549,41 @@ this.spinnerFeatured=true
     });
   
   }
+
+  procesarCursos(){
+
+  this.cart.forEach((element,index) => {
+
+    // console.log(element)
+
+    this.AgregarCurso({idCursoFk:element.idCursoFk,idUsuarioFk:this.idUsuario,id:element.id})
+
+
+
+ 
+  
     
+  });
+}
+   
+AgregarCurso(dato){
+  this.service.addCursoPremiun(dato)
+  .then(res => {
+    // this.cateSpinner=false
+    console.log('respuesta del agrego cursos',res);
+
+
+    this.service.deleteCartUser({id:dato.id}).then(res => {
+      // this.cateSpinner=false
+      console.log('respuesta del borro',res);
+  
+      this.navCtrl.navigateForward(['/tabs/cursosPremiun'])
+    });
+ 
+  }, err => {
+  //  this.cateSpinner=false
+    console.log(err);
+  });
+}
 
 }

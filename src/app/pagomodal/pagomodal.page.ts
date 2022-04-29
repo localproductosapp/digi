@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 // import { NavParams } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
-import { Stripe } from '@awesome-cordova-plugins/stripe/ngx';
+//import { Stripe } from '@awesome-cordova-plugins/stripe/ngx';
 import { ApiService } from '../services/api.service';
 import { ToastController } from '@ionic/angular';
 import { NavParams,LoadingController,NavController, AlertController } from '@ionic/angular';
@@ -37,7 +37,7 @@ export class PagomodalPage implements OnInit {
 
 
   constructor(navParams: NavParams,
-    private stripe: Stripe,
+    //private stripe: Stripe,
     private service: ApiService,
     public modalController: ModalController ,
     public toastController: ToastController,
@@ -63,7 +63,7 @@ export class PagomodalPage implements OnInit {
 
   async pagar(){
     this.spinnerFeatured=true
-    this.stripe.setPublishableKey('pk_test_51K7hlpGPfZahrmfPjpVX1KxmRtWqr3UNiqov7pO0sswLMoXRJhsceulNSjacflHABhjT5CfABaZbiCs7TNpDIpvB003866cfYb');
+    //this.stripe.setPublishableKey('pk_test_51K7hlpGPfZahrmfPjpVX1KxmRtWqr3UNiqov7pO0sswLMoXRJhsceulNSjacflHABhjT5CfABaZbiCs7TNpDIpvB003866cfYb');
   
   let card = {
    number: this.numeroTarjeta,
@@ -72,7 +72,7 @@ export class PagomodalPage implements OnInit {
    cvc: this.cvc
   }
   
-  this.stripe.createCardToken(card)
+  /*this.stripe.createCardToken(card)
      .then(token => {
 
       console.log('este es el toke',token.id)
@@ -138,7 +138,7 @@ export class PagomodalPage implements OnInit {
 
      )
 
-     .catch(error => console.error(error));
+     .catch(error => console.error(error));*/
     }
 
 

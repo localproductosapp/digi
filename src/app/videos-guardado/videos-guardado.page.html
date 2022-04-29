@@ -114,7 +114,7 @@
        
                
          
-        <ion-grid>
+        <ion-grid class="marginTop">
          
         
           <ion-row *ngIf="categories" >
@@ -126,7 +126,7 @@
                   <ion-row >
         
             
-                    <ion-col size="4" *ngFor="let item of categories" style="height: 168px;">
+                    <ion-col sizeMd="3" sizeLg="3" sizeXs="4" *ngFor="let item of categories" >
         
                       <a (click)="cursosVistos(item.id)" routerLink="/tabs/detailCurso/{{item.id}}">
                         <img class="tamanoImg"  [src]="item && item.url_image==null ? 'assets/img/portada.jpg' : item.url_image">

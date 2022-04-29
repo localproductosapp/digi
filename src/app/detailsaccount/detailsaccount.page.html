@@ -27,7 +27,7 @@
         <ion-spinner *ngIf="spinner" name="crescent"></ion-spinner>
       </ion-col>
     </ion-row>
-    <ion-row >
+    <ion-row class="marginTop">
       <img class="imageBig" src="assets/img/elearning.jpg">
       <ion-card class="cardito">
         <ion-card-header>
@@ -60,6 +60,11 @@
           <ion-item class="item-background-color">
             <a routerLink="/tabs/videosGuardado">
               <ion-label><ion-icon name="heart" color="danger"></ion-icon> Guardados</ion-label>
+            </a>
+          </ion-item>
+          <ion-item class="item-background-color">
+            <a routerLink="/tabs/cursosPremiun">
+              <ion-label><ion-icon name="star" color="danger"></ion-icon> Mis cursos Premium</ion-label>
             </a>
           </ion-item>
           <ion-item class="item-background-color">

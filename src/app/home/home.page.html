@@ -21,8 +21,8 @@
 
 <ion-content [fullscreen]="true" scrollEvents="true" [appHideHeader]="header">
 
-  <div class="spotlight" *ngIf="cursoMasVisto && cursoMasVisto.portada2!=null" style="background-image: url({{cursoMasVisto.portada2}})" >
-    <div class="gradient" s></div>
+  <div class="spotlight" style="width: 100%;" *ngIf="cursoMasVisto && cursoMasVisto.portada2!=null" style="background-image: url({{cursoMasVisto.portada2}})" >
+    <div class="gradient" ></div>
     
     <div class="info" *ngIf="cursoMasVisto">
       <!-- <img class="title" [src]="cursoMasVisto && cursoMasVisto.url_image==null ? 'assets/img/portada.jpg' : cursoMasVisto.url_image">  -->
@@ -39,7 +39,7 @@
           </div>
         </ion-col>
         <ion-col size="4" class="ion-tex-center">
-          <a (click)="cursosVistos(cursoMasVisto.id)" routerLink="/detailCurso/{{cursoMasVisto.id}}">
+          <a (click)="cursosVistos(cursoMasVisto.id)" routerLink="/tabs/detailCurso/{{cursoMasVisto.id}}">
             <div class="btn-play">
               <ion-icon name="play" color="danger"></ion-icon>
               <span>Reproducir</span>
@@ -79,7 +79,7 @@
           </div>
         </ion-col>
         <ion-col size="4" class="ion-tex-center">
-          <a (click)="cursosVistos(cursoMasVisto.id)" routerLink="/detailCurso/{{cursoMasVisto.id}}">
+          <a (click)="cursosVistos(cursoMasVisto.id)" routerLink="/tabs/detailCurso/{{cursoMasVisto.id}}">
             <div class="btn-play">
               <ion-icon name="play" color="danger"></ion-icon>
               <span>Reproducir</span>
@@ -118,7 +118,7 @@
         <img (click)="cursosVistos(series.id)" routerLink="/tabs/detailCurso/{{series.id}}" class="tamanoImg"  [src]="series && series.url_image==null ? 'assets/img/portada.jpg' : series.url_image">
         <ion-grid class="claGrid" *ngIf="series && series.tags!='' || series.tags!=null">
           <ion-row>
-            <ion-col size="12" class="esteIos" style="text-align: right;" >
+            <ion-col  size="12" class="esteIos" style="text-align: right;" >
               <ion-chip class="bckChip" >
       
                 <ion-icon *ngIf="series.tags=='Lecciones'" name="school-outline" color="primary"></ion-icon>

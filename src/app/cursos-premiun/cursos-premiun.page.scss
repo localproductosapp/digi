@@ -236,14 +236,15 @@ p{
     font-size: large;
   }
 
-  .claGrid{
-    position: relative;
-    bottom: 150px !important;
-}
+//   .claGrid{
+//     position: relative;
+//     bottom: 150px !important;
+// }
 
 @media(min-width:425px){
 
     .claGrid{
+        position: relative;
         bottom: 150px !important;
     }
     ion-chip{
@@ -255,6 +256,7 @@ p{
 @media(max-width:320px){
 
     .claGrid{
+        position: relative;
         bottom: 150px !important;
     }
     ion-chip{
@@ -265,6 +267,7 @@ p{
 @media(max-width:375px){
 
     .claGrid{
+        position: relative;
         bottom: 150px !important;
     }
     ion-chip{
@@ -288,3 +291,21 @@ p{
     font-size: 11px;
   }
 }
+
+@media (min-width: 768px){
+    .claGrid {
+        position: relative;
+        bottom: 311px !important;
+    }
+
+    .tamanoImg {
+        width: 100% !important;
+        height: 300px !important;
+        border-radius: 5px;
+    }
+
+}
+
+
+
+

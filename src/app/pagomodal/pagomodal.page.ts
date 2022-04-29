@@ -6,6 +6,12 @@ import { ApiService } from '../services/api.service';
 import { ToastController } from '@ionic/angular';
 import { NavParams,LoadingController,NavController, AlertController } from '@ionic/angular';
 
+// import { Stripe } from '@capacitor-community/stripe';
+// import { Plugins } from '@capacitor/core';
+
+// const { Stripe } = Plugins;
+import '@stripe/stripe-js';
+declare var Stripe;
 
 @Component({
   selector: 'app-pagomodal',
@@ -34,10 +40,10 @@ export class PagomodalPage implements OnInit {
     terminos=false
 
     spinnerFeatured=false
-
+    stripe = Stripe('pk_test_51K7hlpGPfZahrmfPjpVX1KxmRtWqr3UNiqov7pO0sswLMoXRJhsceulNSjacflHABhjT5CfABaZbiCs7TNpDIpvB003866cfYb');
 
   constructor(navParams: NavParams,
-    //private stripe: Stripe,
+    // private stripe: Stripe,
     private service: ApiService,
     public modalController: ModalController ,
     public toastController: ToastController,
@@ -51,6 +57,8 @@ export class PagomodalPage implements OnInit {
     let arreglo=localStorage.getItem('user')
 
     this.idUsuario=JSON.parse(arreglo).id
+
+    let elements = this.stripe.elements();
     
   }
 
@@ -67,16 +75,16 @@ export class PagomodalPage implements OnInit {
   
   let card = {
    number: this.numeroTarjeta,
-   expMonth: this.expMonth,
-   expYear: this.expYear,
+   exp_month: this.expMonth,
+   exp_year: this.expYear,
    cvc: this.cvc
   }
   
   /*this.stripe.createCardToken(card)
      .then(token => {
 
-      console.log('este es el toke',token.id)
-        if(token.id){
+      // console.log('este es el toke',token.id)
+        // if(token.id){
 
         
           let numerito =this.montoTotal.toString()
@@ -85,8 +93,8 @@ export class PagomodalPage implements OnInit {
 
           console.log('este es el monto que va a viajar',result)
 
-          this.service.pagar({token:token.id,amount:result})
-                        .then(res => {
+          this.service.pagar({token:0,amount:result,card:card})
+                        .subscribe(res => {
                           // this.cateSpinner=false
                           console.log('esta es la respuesta del pago',res);
 
@@ -131,12 +139,12 @@ export class PagomodalPage implements OnInit {
                         });
 
 
-        }
+        // }
 
-     }
+    //  }
  
 
-     )
+    //  )
 
      .catch(error => console.error(error));*/
     }

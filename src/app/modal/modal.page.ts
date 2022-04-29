@@ -24,7 +24,7 @@ export class ModalPage implements OnInit {
   categorias(){
 
     this.apiService.categories()
-    .then(res => {
+    .subscribe(res => {
       // this.cateSpinner=false
       
       this.categories = JSON.parse(JSON.stringify(res)).data;

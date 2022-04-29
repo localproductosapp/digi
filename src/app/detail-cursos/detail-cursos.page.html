@@ -42,7 +42,7 @@
     </ion-button>
   </div>-->
 
-  <div class="spotlight" *ngIf="curso && curso.portada2!=null" style="background-image: url({{curso.portada2}})"  >
+  <div class="spotlight" style="width: 100%;" *ngIf="curso && curso.portada2!=null" style="background-image: url({{curso.portada2}})"  >
     <!-- <div class="spotlight" *ngIf="curso && curso.url_image==''" style="background-image: url(assets/img/lerning.jpg)"  > -->
     <div class="gradient" ></div>
     
@@ -89,7 +89,7 @@
   </div>
   <div id="fullscreen" slot="fixed"></div>
   <!-- <div class="spotlight" *ngIf="curso && curso.url_image!=''" style="background-image: url({{curso.url_image}})"  > -->
-    <div class="spotlight" *ngIf="curso && curso.portada2==null" style="background-image: url(assets/img/lerning.jpg)"  >
+    <div class="spotlight"  *ngIf="curso && curso.portada2==null" style="background-image: url(assets/img/lerning.jpg);width: 100%;"  >
     <div class="gradient" ></div>
     
     <div class="info" *ngIf="curso">
@@ -158,29 +158,98 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-   
-    <ion-row *ngIf="curso">
-      <ion-card *ngFor="let video of curso.videos" style="border-radius: 10px;">
-        <a (click)="reproducir(video.url,video.suscription_id,video.id)">
-          <img [src]="video.url_image==null || video.url_image=='' ? 'assets/img/portada_vacia.jpg' : video.url_image" />
-        </a>
-        <ion-card-header class="estiloCard">
-          <ion-card-subtitle>
-            <ion-chip>
-              
-              <ion-icon *ngIf="video.tags=='Lecciones'" name="school-outline" color="primary"></ion-icon>
-              <ion-icon *ngIf="video.tags=='Preguntas'" name="chatbubble-ellipses-outline" color="primary"></ion-icon>
-              <ion-icon *ngIf="video.tags=='Dosis diaria'" name="sunny-outline" color="primary"></ion-icon>
-              <ion-icon *ngIf="video.tags=='Programa'" name="bulb-outline" color="primary"></ion-icon>
-              <ion-icon *ngIf="video.tags=='Bienvenida'" name="rocket-outline" color="primary"></ion-icon>
-              <ion-icon *ngIf="video.tags=='Muy pronto'" name="time-outline" color="primary"></ion-icon>
-              <ion-icon *ngIf="video.tags=='Audio'" name="mic-outline" color="primary"></ion-icon>
 
-              <ion-label>{{video.tags}}</ion-label>
-            </ion-chip>
-          </ion-card-subtitle>
-          <ion-card-title>{{video.name}}</ion-card-title>
-        </ion-card-header>
+    <ion-row *ngIf="curso && curso.tipoCurso==2">
+      <ion-col size="4">
+        <ion-select class="cajaSelect" (ionChange)="videosCargar($event)" placeholder="Seleccionar">
+          <ion-select-option [value]="asocia.cursos[0]" *ngFor="let asocia of asociados">{{asocia.cursos[0].name}}</ion-select-option>
+     
+        </ion-select>
+        
+      </ion-col>
+    </ion-row>
+
+   
+    <ion-row *ngIf="curso && curso.tipoCurso==1">
+      <ion-card  *ngFor="let video of curso.videos" style="border-radius: 10px;margin-left: auto;margin-right: auto">
+       
+         
+    
+ 
+
+       
+          <ion-row>
+            <ion-col size="4">
+              <a (click)="reproducir(video.url,video.suscription_id,video.id)">
+                <img style="    border-radius: 10px;" [src]="video.url_image==null || video.url_image=='' ? 'assets/img/portada_vacia.jpg' : video.url_image" />
+              </a>
+        
+             
+                  <!-- <ion-chip>
+                    
+                    <ion-icon *ngIf="video.tags=='Lecciones'" name="school-outline" color="primary"></ion-icon>
+                    <ion-icon *ngIf="video.tags=='Preguntas'" name="chatbubble-ellipses-outline" color="primary"></ion-icon>
+                    <ion-icon *ngIf="video.tags=='Dosis diaria'" name="sunny-outline" color="primary"></ion-icon>
+                    <ion-icon *ngIf="video.tags=='Programa'" name="bulb-outline" color="primary"></ion-icon>
+                    <ion-icon *ngIf="video.tags=='Bienvenida'" name="rocket-outline" color="primary"></ion-icon>
+                    <ion-icon *ngIf="video.tags=='Muy pronto'" name="time-outline" color="primary"></ion-icon>
+                    <ion-icon *ngIf="video.tags=='Audio'" name="mic-outline" color="primary"></ion-icon>
+      
+                    <ion-label>{{video.tags}}</ion-label>
+                  </ion-chip> -->
+
+            </ion-col>
+            <ion-col> <ion-card-title style="color:white;font-size: 14px;">{{video.name}}</ion-card-title><br><ion-card-title style="color: #8c8c8c;font-size: 14px;">{{video.tiempo}}</ion-card-title> </ion-col>
+            <!-- <ion-col></ion-col> -->
+
+            <ion-col size="12">
+             <p style="color:#8c8c8c;"> {{video.descripcion}}</p> 
+              <!-- {{video.descripcion}} -->
+            </ion-col>
+          </ion-row>
+   
+      </ion-card>
+
+    </ion-row>
+
+
+    <ion-row *ngIf="curso && curso.tipoCurso==2">
+  
+      <ion-card  *ngFor="let video of videosCurso" style="border-radius: 10px;margin-left: auto;margin-right: auto">
+          
+    
+ 
+
+       
+        <ion-row>
+          <ion-col size="4">
+            <a (click)="reproducir(video.url,video.suscription_id,video.id)">
+              <img style="    border-radius: 10px;" [src]="video.url_image==null || video.url_image=='' ? 'assets/img/portada_vacia.jpg' : video.url_image" />
+            </a>
+      
+           
+                <!-- <ion-chip>
+                  
+                  <ion-icon *ngIf="video.tags=='Lecciones'" name="school-outline" color="primary"></ion-icon>
+                  <ion-icon *ngIf="video.tags=='Preguntas'" name="chatbubble-ellipses-outline" color="primary"></ion-icon>
+                  <ion-icon *ngIf="video.tags=='Dosis diaria'" name="sunny-outline" color="primary"></ion-icon>
+                  <ion-icon *ngIf="video.tags=='Programa'" name="bulb-outline" color="primary"></ion-icon>
+                  <ion-icon *ngIf="video.tags=='Bienvenida'" name="rocket-outline" color="primary"></ion-icon>
+                  <ion-icon *ngIf="video.tags=='Muy pronto'" name="time-outline" color="primary"></ion-icon>
+                  <ion-icon *ngIf="video.tags=='Audio'" name="mic-outline" color="primary"></ion-icon>
+    
+                  <ion-label>{{video.tags}}</ion-label>
+                </ion-chip> -->
+
+          </ion-col>
+          <ion-col> <ion-card-title style="color:white;font-size: 14px;">{{video.name}}</ion-card-title><br><ion-card-title style="color: #8c8c8c;font-size: 14px;">{{video.tiempo}}</ion-card-title> </ion-col>
+          <!-- <ion-col></ion-col> -->
+
+          <ion-col size="12">
+           <p style="color:#8c8c8c;"> {{video.descripcion}}</p> 
+            <!-- {{video.descripcion}} -->
+          </ion-col>
+        </ion-row>
       </ion-card>
 
     </ion-row>

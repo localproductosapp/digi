@@ -66,7 +66,7 @@ export class SettingPage implements OnInit {
     console.log('este es el imgperfil',valor)
 
     this.service.updateImgPerfil({id:this.idUsuario,imgPerfil:valor})
-    .then(res => {
+    .subscribe(res => {
 
  
       console.log('esta es la respuesta',res)
@@ -84,11 +84,11 @@ export class SettingPage implements OnInit {
 
   consoltarUser(){
     this.service.consultarUser(this.idUsuario)
-    .then(res => {
+    .subscribe(res => {
 
  
       console.log('esta es la del usuario',res)
-      this.Avatar=res.imgPerfil
+      this.Avatar=JSON.parse(JSON.stringify(res)).imgPerfil
 
     }, err => {
 

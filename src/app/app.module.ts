@@ -16,7 +16,7 @@ import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-media/ngx';
 //import { Stripe } from '@awesome-cordova-plugins/stripe/ngx';
 
-import { InAppPurchase2 } from '@ionic-native/in-app-purchase-2/ngx';
+ import { InAppPurchase2 } from '@ionic-native/in-app-purchase-2/ngx';
 
 
 

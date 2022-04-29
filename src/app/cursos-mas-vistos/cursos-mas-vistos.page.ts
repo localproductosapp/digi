@@ -95,7 +95,7 @@ export class CursosMasVistosPage implements OnInit {
         getCursos(){
   this.spinnerFeatured=true
           this.service.categories({orderBy:'View',sortBy:'asc'})
-              .then(res => {
+              .subscribe(res => {
                 this.spinnerFeatured=false
                 
                 this.categories = JSON.parse(JSON.stringify(res)).data;
@@ -127,7 +127,7 @@ export class CursosMasVistosPage implements OnInit {
             this.cateSpinner=true
             this.CursoPersona(id)
                     this.service.cursosMasVistos(id)
-                        .then(res => {
+                        .subscribe(res => {
                           // this.cateSpinner=false
                           console.log('esta categoria cursois',res);
                            this.categories = JSON.parse(JSON.stringify(res)).data;
@@ -141,7 +141,7 @@ export class CursosMasVistosPage implements OnInit {
                     CursoPersona(id){
                       // storeGuardados
                       this.service.CursoPorPersona({idCursoFk:id,idUsuarioFk:this.idUsuario})
-                      .then(res => {
+                      .subscribe(res => {
                         // this.cateSpinner=false
                         console.log('hizo play',res);
                         // this.presentToast('Ha guardado el curso!')
@@ -156,10 +156,10 @@ export class CursosMasVistosPage implements OnInit {
                     storeGuardado(id){
                       // storeGuardados
                       this.service.storeGuardados({idVideo:id,idUsuario:this.idUsuario})
-                      .then(res => {
+                      .subscribe(res => {
                         // this.cateSpinner=false
                         console.log('guardo el video',res);
-                        if(res.message){
+                        if(JSON.parse(JSON.stringify(res)).message){
                           this.presentToast('Ya tiene este curso guardado') 
                         }else{
                           this.presentToast('Ha guardado el curso!')

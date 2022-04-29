@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { ApiService } from './services/api.service';
+import { Plugins } from "@capacitor/core";
+// import { initialize } from 'capacitor-admob'; No longar required
 
+// const { AdMob } = Plugins;
+import { AdMob } from '@capacitor-community/admob';
 
 
 @Component({
@@ -17,6 +21,12 @@ export class AppComponent {
 
 
   ) {
+
+    AdMob.initialize({
+      requestTrackingAuthorization: true,
+      testingDevices: ['2077ef9a63d2b398840261c8221a0c9b'],
+      initializeForTesting: true,
+    });
 
   }
 

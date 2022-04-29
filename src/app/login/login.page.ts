@@ -79,7 +79,7 @@ export class LoginPage implements OnInit {
 
     // console.log('esto va en el param',this.params)
     this.service.login({email:this.user,password:this.password})
-        .then(res => {
+        .subscribe(res => {
           this.spinner=false
           console.log(res);
           this.userLogin = res;

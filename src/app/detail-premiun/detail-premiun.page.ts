@@ -88,14 +88,11 @@ export class DetailPremiunPage implements OnInit {
    
     }
 
-     reproducir(url,suscripcion,videoId){
+    reproducir(url,suscripcion,videoId){
 
-       this.PlayPersona(videoId)
+      this.PlayPersona(videoId)
 
-      // if(suscripcion==1 && this.subscripcion==2){
-      //   this.presentToast('Este video es solo para usuarios Premiun')
-      //   return;
-      // }
+ 
 
       if(this.platform.is('ios')){
         console.log('entre')
@@ -112,16 +109,24 @@ export class DetailPremiunPage implements OnInit {
   
      
 
-      }else{
+    
+ 
+    
 
-        // Playing a video.
-        this._videoPlayer.initPlayer({mode:"fullscreen",url:url,playerId:"fullscreen",componentTag:"app-detail-cursos",subtitle:null,language:null,subtitleOption:null})
-        
-      }
-      
-  
-      
-    }
+     }else if(this.platform.is('android')){
+       
+       // Playing a video.
+       this._videoPlayer.initPlayer({mode:"fullscreen",url:url,playerId:"fullscreen",componentTag:"app-detail-premiun",subtitle:null,language:null,subtitleOption:null})
+       
+     }else{
+       //this._videoPlayer = PluginsLibrary.CapacitorVideoPlayer
+       //this._videoPlayer.initPlayer({mode:"fullscreen",url:url,playerId:"fullscreen",componentTag:"app-detail-premiun",subtitle:null,language:null,subtitleOption:null})
+     }
+     
+ 
+     
+   }
+
 
 
   
@@ -162,7 +167,7 @@ this.spinnerFeatured=true
       .then(res => {
         // this.cateSpinner=false
         console.log('guardo el video',res);
-        if(res.message){
+        if(JSON.parse(JSON.stringify(res)).message){
           this.presentToast('Ya tiene este curso guardado') 
         }else{
           this.presentToast('Ha guardado el curso!')

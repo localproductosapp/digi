@@ -158,11 +158,11 @@ export class DetailsaccountPage implements OnInit {
 
   consoltarUser(){
     this.service.consultarUser(this.idUsuario)
-    .then(res => {
+    .subscribe(res => {
 
  
       console.log('esta es la del usuario',res)
-      this.AvatarImg=res.imgPerfil
+      this.AvatarImg=JSON.parse(JSON.stringify(res)).imgPerfil
 
     }, err => {
 

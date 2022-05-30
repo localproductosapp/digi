@@ -1,8 +1,9 @@
 
 <ion-header #header class="ion-no-border">
   <ion-toolbar>
+
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/tabs/home">Volver</ion-back-button>
+      <ion-back-button defaultHref="/home" >Volver</ion-back-button>
     </ion-buttons>
     <img class="logo" src="/assets/img/logo.png">
     <!-- <ion-row class="ion-justify-content-center ion-text-center">
@@ -20,7 +21,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" scrollEvents="true" [appHideHeader]="header">
+<ion-content [fullscreen]="true" scrollEvents="true" [appHideHeader]="header" >
 <!-- 
   <div fullscreen *ngIf="curso" class="tarjeta">
 
@@ -58,10 +59,10 @@
           </div>
         </ion-col>
         <ion-col size="3" class="ion-tex-center">
-          <!-- <span class="rating">Visto: {{ curso.view }}</span><br> -->
+          <!-- <span class="rating">Visto: {{ curso.view }}</span><br> 
           <a (click)="purchase(products,curso.id,curso.precio)" *ngIf="curso.premiun!=0">
             <ion-icon name="cart" ></ion-icon><p class="textoti"><b>Comprar</b></p>
-          </a> 
+          </a> -->
       
           <a (click)="storeGuardado(curso.id)">
             <ion-icon name="heart" color="danger"></ion-icon><p class="textoti"><b>Guardar</b></p>
@@ -104,10 +105,10 @@
           </div>
         </ion-col>
         <ion-col size="3" class="ion-tex-center">
-          <!-- <span class="rating">Visto: {{ curso.view }}</span><br> -->
+          <!-- <span class="rating">Visto: {{ curso.view }}</span><br> 
           <a (click)="purchase(products,curso.id,curso.precio)" *ngIf="curso.premiun!=0" >
             <ion-icon name="cart" ></ion-icon><p class="textoti"><b>Comprar</b></p>
-          </a> 
+          </a> -->
           <a (click)="storeGuardado(curso.id)">
             <ion-icon name="heart" color="danger"></ion-icon><p class="textoti"><b>Guardar</b></p>
           </a> 
@@ -134,11 +135,11 @@
  
   </div>
 
-  <ion-row>
+  <ion-row style="padding-bottom: 100px;">
     <ion-col size="12" *ngIf="curso && curso.descripcion!=''" style="padding: 20px;">
       <p>{{curso.descripcion}}</p>
     </ion-col>
-    <ion-col size="12" class="ion-text-center">
+    <ion-col size="12" class="ion-text-center" style="margin-bottom: 30px;">
       <a (click)="reproducir(curso.videos[0].url,curso.videos[0].suscription_id,curso.videos[0].id)">
         <div class="botonPlay">
           <ion-icon name="play" color="light"></ion-icon>

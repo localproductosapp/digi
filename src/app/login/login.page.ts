@@ -79,7 +79,7 @@ export class LoginPage implements OnInit {
 
     // console.log('esto va en el param',this.params)
     this.service.login({email:this.user,password:this.password})
-        .subscribe(res => {
+        .then(res => {
           this.spinner=false
           console.log(res);
           this.userLogin = res;
@@ -112,7 +112,7 @@ export class LoginPage implements OnInit {
             //   console.log(err);
             // });
           }else{
-            this.presentToast('Error!')
+            this.presentToast(this.userLogin.error.message)
             console.log('entro en el elese')
           }
         }, err => {

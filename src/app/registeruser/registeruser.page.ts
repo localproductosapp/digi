@@ -54,7 +54,7 @@ export class RegisteruserPage implements OnInit {
   register(){
     this.spinner=true
     this.service.registerUser({"email":this.email,"names":this.names,"password":this.password})
-    .subscribe(res => {
+    .then(res => {
       this.spinner=false
       console.log('este es la respuesta',res);
       // console.log('este es el status',JSON.parse(JSON.stringify(res)).data.status)

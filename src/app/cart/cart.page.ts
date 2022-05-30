@@ -90,7 +90,7 @@ gteCart(){
 
   
   this.service.getCartUser({idUsuarioFk:this.idUsuario})
-  .subscribe(res => {
+  .then(res => {
     // this.cateSpinner=false
    
     //  this.presentToast('Agregado correctamente al carrito')
@@ -143,7 +143,7 @@ delete(id){
   // deleteCartUser
 
     this.service.deleteCartUser({id:id})
-  .subscribe(res => {
+  .then(res => {
     // this.cateSpinner=false
     console.log('respuesta del delete carrito',res);
     //  this.presentToast('Agregado correctamente al carrito')

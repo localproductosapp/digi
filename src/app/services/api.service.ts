@@ -314,7 +314,8 @@ recuperarPassword(param){
     'Content-Type': 'application/json'
 };
   return this.http.post(
-    environment.ApiUrl+"api/password/email", param,headers )
+  
+    environment.ApiUrl+"api/password/email", param,{} )
     .then(data =>{
       // console.log('esta es la maldita data',data)
       return JSON.parse(data.data);
@@ -348,7 +349,7 @@ changePassword(param?){
     'Content-Type': 'application/json'
 };
   return this.http.post(
-    environment.ApiUrl+"api/password/reset", param,headers)
+    environment.ApiUrl+"api/password/reset", param,{})
     .then(data =>{
       return JSON.parse(data.data);
     })
@@ -372,6 +373,30 @@ changePassword(param?){
     //   catchError(this.handleError('busqueda', []))
     // );
 
+}
+deleteGuardados(dato) {
+
+
+
+  console.log(dato);
+ 
+   return this.http.post(
+     environment.ApiUrl + "api/deleteGuardados",dato,{})
+     .then(data =>{
+          return data
+        return JSON.parse(data.data);
+     })
+     .catch(error => {
+       console.log(error);
+       this.handleError('login', [])
+  });
+
+  /*return this.http2.post(
+    environment.ApiUrl + "api/deleteGuardados",dato)
+    .pipe(
+      tap(_ => this.log('response received')),
+      catchError(this.handleError('signup', []))
+    );*/
 }
 
 obtenerCurso(idCurso){

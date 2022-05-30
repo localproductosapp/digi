@@ -158,7 +158,7 @@ export class DetailsaccountPage implements OnInit {
 
   consoltarUser(){
     this.service.consultarUser(this.idUsuario)
-    .subscribe(res => {
+    .then(res => {
 
  
       console.log('esta es la del usuario',res)

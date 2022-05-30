@@ -39,7 +39,7 @@
           </div>
         </ion-col>
         <ion-col size="4" class="ion-tex-center">
-          <a (click)="cursosVistos(cursoMasVisto.id)" routerLink="/tabs/detailCurso/{{cursoMasVisto.id}}">
+          <a (click)="cursosVistos(cursoMasVisto.id);irCurso(cursoMasVisto.id)" >
             <div class="btn-play">
               <ion-icon name="play" color="danger"></ion-icon>
               <span>Reproducir</span>
@@ -79,7 +79,7 @@
           </div>
         </ion-col>
         <ion-col size="4" class="ion-tex-center">
-          <a (click)="cursosVistos(cursoMasVisto.id)" routerLink="/tabs/detailCurso/{{cursoMasVisto.id}}">
+          <a (click)="cursosVistos(cursoMasVisto.id);irCurso(cursoMasVisto.id)" >
             <div class="btn-play">
               <ion-icon name="play" color="danger"></ion-icon>
               <span>Reproducir</span>
@@ -115,7 +115,7 @@
 
       <ion-slide *ngFor="let series of section.cursos">
         <div >
-        <img (click)="cursosVistos(series.id)" routerLink="/tabs/detailCurso/{{series.id}}" class="tamanoImg"  [src]="series && series.url_image==null ? 'assets/img/portada.jpg' : series.url_image">
+        <img (click)="cursosVistos(series.id);irCurso(series.id)"  class="tamanoImg"  [src]="series && series.url_image==null ? 'assets/img/portada.jpg' : series.url_image">
         <ion-grid class="claGrid" *ngIf="series && series.tags!='' || series.tags!=null">
           <ion-row>
             <ion-col  size="12" class="esteIos" style="text-align: right;" >

@@ -20,6 +20,11 @@
 
 
   ion-tab-bar, ion-tab-button{
+    
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.8715861344537815) 0%, rgba(0, 0, 0, 0.8463760504201681) 57%, rgba(0, 0, 0, 0.6923144257703081) 80%, rgba(0, 0, 0, 0.24) 89%, rgba(0, 0, 0, 0) 100%) !important;
+   }
+
+   ion-tab-bar{
+    margin-top: 30px;
    }
   

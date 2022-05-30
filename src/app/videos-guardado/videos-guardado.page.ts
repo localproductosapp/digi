@@ -91,7 +91,7 @@ export class VideosGuardadoPage implements OnInit {
         getCursosGuardados(){
   this.spinnerFeatured=true
           this.service.getGuardados({idUsuario:this.idUsuario})
-              .subscribe(res => {
+              .then(res => {
                 this.spinnerFeatured=false
                 
                 this.categories = res;
@@ -107,7 +107,7 @@ export class VideosGuardadoPage implements OnInit {
           cursosVistos(id){
             this.cateSpinner=true
                     this.service.cursosMasVistos(id)
-                        .subscribe(res => {
+                        .then(res => {
                           // this.cateSpinner=false
                           console.log('esta categoria cursois',res);
                           // this.categories = JSON.parse(JSON.stringify(res)).data;
@@ -118,5 +118,19 @@ export class VideosGuardadoPage implements OnInit {
                         });
                     }
   
-
+                    deleteGuardado(id){
+                      // this.spinnerFeatured=true
+                              this.service.deleteGuardados({id:id})
+                                  .then(res => {
+                                    this.spinnerFeatured=false
+                                    
+                                    // this.categories = res;
+                                    console.log('este es el resultado',res );
+                                    this.getCursosGuardados()
+                                 
+                                  }, err => {
+                                   this.spinnerFeatured=false
+                                    console.log(err);
+                                  });
+                              }
 }

@@ -128,8 +128,8 @@
             
                     <ion-col sizeMd="3" sizeLg="3" sizeXs="4" *ngFor="let item of categories" >
         
-                      <a (click)="cursosVistos(item.id)" routerLink="/tabs/detailCurso/{{item.id}}">
-                        <img class="tamanoImg"  [src]="item && item.url_image==null ? 'assets/img/portada.jpg' : item.url_image">
+                      <div >
+                        <img class="tamanoImg"  (click)="cursosVistos(item.id)" routerLink="/tabs/detailCurso/{{item.id}}" [src]="item && item.url_image==null ? 'assets/img/portada.jpg' : item.url_image">
                         <ion-grid class="claGrid" *ngIf="item && item.tags!='' || item.tags!=null">
                           <ion-row>
                             <ion-col size="12" style="text-align: center;" >
@@ -156,17 +156,20 @@
                                   <img src="/assets/img/premiun.png" style="width: 18px;"/>
                                 </a> 
                               </ion-col>
+
+                              <ion-col size="6" style="text-align: left;" *ngIf="item.premiun==0">
+                              </ion-col>
                             
                             
-                            <!-- <ion-col size="6" style="text-align: right;">
-                              <a (click)="storeGuardado(series.id)">
-                                <ion-icon name="heart" color="danger"></ion-icon>
+                            <ion-col size="6" style="text-align: right;">
+                              <a (click)="deleteGuardado(item.idGuardado)">
+                                <ion-icon name="trash" color="danger"></ion-icon>
                               </a> 
-                            </ion-col> -->
+                            </ion-col>
                          
                           </ion-row>
                         </ion-grid>
-                        </a>
+                        </div>
         
                   </ion-col>
                 </ion-row>

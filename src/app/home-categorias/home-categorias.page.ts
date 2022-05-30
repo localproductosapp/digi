@@ -97,7 +97,7 @@ export class HomeCategoriasPage implements OnInit {
             this.tagsss=0
             console.log('aqui entramos en id')
             this.service.categoriesIndex({category_id:this.route.snapshot.paramMap.get('id')})
-            .subscribe(res => {
+            .then(res => {
               this.cateSpinner=false
               
               this.categories = JSON.parse(JSON.stringify(res)).data;
@@ -112,7 +112,7 @@ export class HomeCategoriasPage implements OnInit {
             this.tagsss=1
             console.log('aqui entramos en tag')
             this.service.categoriesIndex({tag:this.route.snapshot.paramMap.get('tag')})
-            .subscribe(res => {
+            .then(res => {
               this.cateSpinner=false
               
               this.categories = JSON.parse(JSON.stringify(res)).data;
@@ -132,7 +132,7 @@ export class HomeCategoriasPage implements OnInit {
             this.cateSpinner=true
             this.CursoPersona(id)
                     this.service.cursosMasVistos(id)
-                        .subscribe(res => {
+                        .then(res => {
                           // this.cateSpinner=false
                           console.log('esta categoria cursois',res);
                            this.categories = JSON.parse(JSON.stringify(res)).data;
@@ -146,7 +146,7 @@ export class HomeCategoriasPage implements OnInit {
                     CursoPersona(id){
                       // storeGuardados
                       this.service.CursoPorPersona({idCursoFk:id,idUsuarioFk:this.idUsuario})
-                      .subscribe(res => {
+                      .then(res => {
                         // this.cateSpinner=false
                         console.log('hizo play',res);
                         // this.presentToast('Ha guardado el curso!')
@@ -161,7 +161,7 @@ export class HomeCategoriasPage implements OnInit {
                     storeGuardado(id){
                       // storeGuardados
                       this.service.storeGuardados({idVideo:id,idUsuario:this.idUsuario})
-                      .subscribe(res => {
+                      .then(res => {
                         // this.cateSpinner=false
                         console.log('guardo el video',res);
                         this.presentToast('Ha guardado el curso!')

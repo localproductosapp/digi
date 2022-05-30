@@ -95,7 +95,7 @@ export class CursosMasVistosPage implements OnInit {
         getCursos(){
   this.spinnerFeatured=true
           this.service.categories({orderBy:'View',sortBy:'asc'})
-              .subscribe(res => {
+              .then(res => {
                 this.spinnerFeatured=false
                 
                 this.categories = JSON.parse(JSON.stringify(res)).data;
@@ -127,7 +127,7 @@ export class CursosMasVistosPage implements OnInit {
             this.cateSpinner=true
             this.CursoPersona(id)
                     this.service.cursosMasVistos(id)
-                        .subscribe(res => {
+                        .then(res => {
                           // this.cateSpinner=false
                           console.log('esta categoria cursois',res);
                            this.categories = JSON.parse(JSON.stringify(res)).data;
@@ -141,7 +141,7 @@ export class CursosMasVistosPage implements OnInit {
                     CursoPersona(id){
                       // storeGuardados
                       this.service.CursoPorPersona({idCursoFk:id,idUsuarioFk:this.idUsuario})
-                      .subscribe(res => {
+                      .then(res => {
                         // this.cateSpinner=false
                         console.log('hizo play',res);
                         // this.presentToast('Ha guardado el curso!')
@@ -156,7 +156,7 @@ export class CursosMasVistosPage implements OnInit {
                     storeGuardado(id){
                       // storeGuardados
                       this.service.storeGuardados({idVideo:id,idUsuario:this.idUsuario})
-                      .subscribe(res => {
+                      .then(res => {
                         // this.cateSpinner=false
                         console.log('guardo el video',res);
                         if(JSON.parse(JSON.stringify(res)).message){

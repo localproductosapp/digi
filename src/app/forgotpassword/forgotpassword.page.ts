@@ -55,7 +55,7 @@ export class ForgotpasswordPage implements OnInit {
     this.spinner=true
     console.log('aqui vamos ',this.email)
     this.service.recuperarPassword({email:this.email})
-    .subscribe(res => {
+    .then(res => {
       this.spinner=false
 
       console.log('aqui entre en la respuesta del login',res)
@@ -85,7 +85,7 @@ export class ForgotpasswordPage implements OnInit {
   changepassword(){
     this.spinner=true
     this.service.changePassword({email:this.email,password:this.password,code:this.codego})
-    .subscribe(res => {
+    .then(res => {
       this.spinner=false
       console.log('este es la respuesta del cambio',res);
 

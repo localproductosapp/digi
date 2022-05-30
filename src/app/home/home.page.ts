@@ -131,7 +131,7 @@ console.log('idusuario',this.idUsuario)
 
            this.analyticsService.logEvent(buscador)
 
-              this.service.search(buscador) 
+              /*this.service.search(buscador) 
               .then(res => {
               this.cart=res
 
@@ -141,7 +141,7 @@ console.log('idusuario',this.idUsuario)
               }, err => {
               
                 console.log(err);
-              });
+              });*/
           }
 
       }
@@ -168,7 +168,7 @@ console.log('idusuario',this.idUsuario)
       getCategories(){
   this.spinnerGeneral=true
         this.service.categories()
-            .subscribe(res => {
+            .then(res => {
               this.spinnerGeneral=false
               console.log('esta categoria cursois',res);
               this.categories = JSON.parse(JSON.stringify(res)).data;
@@ -190,7 +190,7 @@ console.log('idusuario',this.idUsuario)
         cursosMasVistos(){
           // this.cateSpinner=true
                   this.service.categories({orderBy:'View',sortBy:'asc'})
-                      .subscribe(res => {
+                      .then(res => {
                         // this.cateSpinner=false
 
                         console.log('el curso mas visto portada',res)
@@ -208,7 +208,7 @@ console.log('idusuario',this.idUsuario)
           // this.cateSpinner=true
           this.CursoPersona(id)
                   this.service.cursosMasVistos(id)
-                      .subscribe(res => {
+                      .then(res => {
                         // this.cateSpinner=false
                         console.log('esta categoria cursos mas vistos',res);
                         // this.categories = JSON.parse(JSON.stringify(res)).data;
@@ -222,7 +222,7 @@ console.log('idusuario',this.idUsuario)
                   CursoPersona(id){
                     // storeGuardados
                     this.service.CursoPorPersona({idCursoFk:id,idUsuarioFk:this.idUsuario})
-                    .subscribe(res => {
+                    .then(res => {
                       // this.cateSpinner=false
                       console.log('hizo play',res);
                       // this.presentToast('Ha guardado el curso!')
@@ -237,10 +237,10 @@ console.log('idusuario',this.idUsuario)
 
 
         async storeGuardado(id){
-          await FacebookAnalytics.logEvent({ event: 'Guardo el curso'+id });
+         // await FacebookAnalytics.logEvent({ event: 'Guardo el curso'+id });
           // storeGuardados
           this.service.storeGuardados({idVideo:id,idUsuario:this.idUsuario})
-          .subscribe(res => {
+          .then(res => {
             // this.cateSpinner=false
             console.log('guardo el video',res);
             if(JSON.parse(JSON.stringify(res)).message){
@@ -281,5 +281,9 @@ console.log('idusuario',this.idUsuario)
           this.drawerService.openDrawer(series.title);
         }    
 
+        
 
+        irCurso(id) {
+          this.navCtrl.navigateForward(['/tabs/detailCurso',id])
+        } 
 }
